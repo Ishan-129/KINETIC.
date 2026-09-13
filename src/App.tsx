@@ -1,4 +1,5 @@
 import React from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { LazySection } from './components/ui/LazySection';
@@ -38,6 +39,7 @@ const Footer = React.lazy(() =>
 export const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-ivory-50 text-slate-900 flex flex-col">
+      <SpeedInsights />
       {/* Sticky Global Navigation */}
       <Navbar />
 
