@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="kin-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#141925"/>
+      <stop offset="100%" stop-color="#080A0F"/>
+    </linearGradient>
+    <linearGradient id="kin-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="kin-pillar" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF0B3"/>
+      <stop offset="30%" stop-color="#FCD34D"/>
+      <stop offset="70%" stop-color="#E8B84B"/>
+      <stop offset="100%" stop-color="#C9922A"/>
+    </linearGradient>
+    <linearGradient id="kin-chevron" x1="28" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF5CC"/>
+      <stop offset="25%" stop-color="#FCD34D"/>
+      <stop offset="65%" stop-color="#E8B84B"/>
+      <stop offset="100%" stop-color="#9B6E1A"/>
+    </linearGradient>
+  </defs>
+  <!-- Squircle Badge -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#kin-bg)" stroke="url(#kin-border)" stroke-width="1.5"/>
+  <!-- Ambient Center Core -->
+  <circle cx="32" cy="32" r="20" fill="#C9922A" opacity="0.08"/>
+  <!-- Anchor Pillar -->
+  <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#kin-pillar)"/>
+  <!-- Kinetic Chevron -->
+  <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#kin-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

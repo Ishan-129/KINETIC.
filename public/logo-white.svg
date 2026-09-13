@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" fill="none">
+  <defs>
+    <linearGradient id="lw-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#182030"/>
+      <stop offset="100%" stop-color="#080A0F"/>
+    </linearGradient>
+    <linearGradient id="lw-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="lw-pillar" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF0B3"/>
+      <stop offset="30%" stop-color="#FCD34D"/>
+      <stop offset="70%" stop-color="#E8B84B"/>
+      <stop offset="100%" stop-color="#C9922A"/>
+    </linearGradient>
+    <linearGradient id="lw-chevron" x1="28" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF5CC"/>
+      <stop offset="25%" stop-color="#FCD34D"/>
+      <stop offset="65%" stop-color="#E8B84B"/>
+      <stop offset="100%" stop-color="#9B6E1A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark Badge -->
+  <g transform="translate(0, 0)">
+    <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#lw-bg)" stroke="url(#lw-border)" stroke-width="1.5"/>
+    <circle cx="32" cy="32" r="20" fill="#C9922A" opacity="0.12"/>
+    <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#lw-pillar)"/>
+    <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#lw-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="76" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">
+    KINETIC<tspan fill="#E8B84B">.</tspan>
+  </text>
+  <text x="76" y="48" font-family="'JetBrains Mono', monospace, Courier" font-weight="600" font-size="9.5" fill="#93C5FD" letter-spacing="2">
+    DIGITAL GROWTH STUDIO
+  </text>
+</svg>
