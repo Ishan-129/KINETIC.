@@ -44,6 +44,9 @@ export const SignalCursor: React.FC = () => {
         const text = cursorTarget.getAttribute('data-cursor-text') || '';
         setCursorState(type || 'default');
         setCustomText(text);
+      } else if (target.closest('input:not([type="submit"]):not([type="button"]), textarea, select, [contenteditable], [contenteditable="true"]')) {
+        setCursorState('hidden');
+        setCustomText('');
       } else if (target.closest('a, button, input[type="submit"]')) {
         const isCta = target.closest('[data-cursor="cta"]') ||
           (target.textContent && (
@@ -138,7 +141,7 @@ export const SignalCursor: React.FC = () => {
       {/* Lagged Ring */}
       <div
         ref={ringRef}
-        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 will-change-transform pointer-events-none"
       >
         <div
           className={`rounded-full border transition-all duration-300 ${ringSize} ${ringColor}`}
@@ -149,7 +152,7 @@ export const SignalCursor: React.FC = () => {
       {/* Primary Dot + Label */}
       <div
         ref={dotRef}
-        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 will-change-transform pointer-events-none"
       >
         {cursorState === 'default' && (
           <div
@@ -158,15 +161,22 @@ export const SignalCursor: React.FC = () => {
           />
         )}
 
+        {cursorState !== 'default' && cursorState !== 'hidden' && (
+          <div
+            className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D] transition-all duration-200"
+            style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }}
+          />
+        )}
+
         {(cursorState === 'view' || cursorState === 'explore') && (
-          <div className="flex items-center gap-1 bg-[#C7FF3D] text-[#080B12] px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap">
+          <div className="absolute top-0 left-0 translate-x-3.5 translate-y-3.5 flex items-center gap-1 bg-[#C7FF3D] text-[#080B12] px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap shadow-lg">
             <span>{customText || (cursorState === 'view' ? 'VIEW →' : 'EXPLORE')}</span>
           </div>
         )}
 
         {cursorState === 'cta' && (
           <div
-            className="flex items-center gap-1 bg-[#C7FF3D] text-[#080B12] px-4 py-2 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap"
+            className="absolute top-0 left-0 translate-x-3.5 translate-y-3.5 flex items-center gap-1 bg-[#C7FF3D] text-[#080B12] px-4 py-2 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap"
             style={{ boxShadow: '0 0 20px rgba(199,255,61,0.5)' }}
           >
             <span>{customText || "LET'S TALK ↗"}</span>
@@ -174,13 +184,13 @@ export const SignalCursor: React.FC = () => {
         )}
 
         {cursorState === 'select' && (
-          <div className="flex items-center gap-1 bg-[#FF4F3B] text-white px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap">
+          <div className="absolute top-0 left-0 translate-x-3.5 translate-y-3.5 flex items-center gap-1 bg-[#FF4F3B] text-white px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap shadow-lg">
             <span>{customText || 'SELECT'}</span>
           </div>
         )}
 
         {cursorState === 'drag' && (
-          <div className="flex items-center gap-1 bg-[#3B8EFF] text-white px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap">
+          <div className="absolute top-0 left-0 translate-x-3.5 translate-y-3.5 flex items-center gap-1 bg-[#3B8EFF] text-white px-3 py-1.5 font-mono text-[10px] font-black tracking-widest uppercase transition-all duration-200 select-none whitespace-nowrap shadow-lg">
             <span>{customText || 'DRAG'}</span>
           </div>
         )}

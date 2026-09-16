@@ -19,10 +19,10 @@ export const Logo: React.FC<LogoProps> = ({
 }) => {
   // Dimensions for the icon mark based on size
   const iconSizeMap = {
-    sm: { box: 28, stroke: 6, radius: 8 },
-    md: { box: 34, stroke: 7, radius: 9 },
-    lg: { box: 44, stroke: 8, radius: 12 },
-    xl: { box: 56, stroke: 10, radius: 15 },
+    sm: { box: 28 },
+    md: { box: 34 },
+    lg: { box: 44 },
+    xl: { box: 56 },
   };
 
   const currentSize = iconSizeMap[size];
@@ -35,26 +35,23 @@ export const Logo: React.FC<LogoProps> = ({
     xl: { title: 'text-3xl', tag: 'text-sm tracking-[2.2px]' },
   }[size];
 
-  // Theme-specific colors
-  const titleColor = theme === 'light' ? 'text-white' : 'text-slate-900';
-  const dotColor = 'text-accent-gold';
-  const tagColor = theme === 'light' ? 'text-blue-200/80' : 'text-slate-500';
+  // Theme-specific colors: theme="dark" means intended for dark backgrounds
+  const titleColor = theme === 'dark' ? 'text-[#ECEEF2]' : 'text-[#080B12]';
+  const dotColor = 'text-[#C7FF3D]';
+  const tagColor = theme === 'dark' ? 'text-[#8A92A6]' : 'text-[#525C71]';
 
-  // Unique ID prefix for gradients to prevent collisions if multiple logos render
-  const idPrefix = `ed-logo-${theme}-${size}`;
-
-  // Custom Merged E + D Monogram Icon Mark
+  // Sharp Kinetic-Dark Monogram Icon Mark (Brutalist 0px radius)
   const EmblemMark = (
     <div
-      className={`relative flex items-center justify-center shrink-0 rounded-xl overflow-hidden transition-all duration-300 ${
-        animated ? 'group-hover:scale-105 group-hover:shadow-gold' : ''
+      className={`relative flex items-center justify-center shrink-0 rounded-none overflow-hidden transition-all duration-300 ${
+        animated ? 'group-hover:scale-105' : ''
       }`}
       style={{
         width: currentSize.box,
         height: currentSize.box,
       }}
       role="img"
-      aria-label="MEDIA-TARDS E+D Monogram"
+      aria-label="MEDIA-TARDS Kinetic Monogram"
     >
       <svg
         viewBox="0 0 64 64"
@@ -62,93 +59,52 @@ export const Logo: React.FC<LogoProps> = ({
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        <defs>
-          {/* Badge Background Gradient */}
-          <linearGradient id={`${idPrefix}-bg`} x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#182030" />
-            <stop offset="100%" stopColor="#080A0F" />
-          </linearGradient>
-
-          {/* Border Metallic Sheen */}
-          <linearGradient id={`${idPrefix}-border`} x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#E8B84B" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#C9922A" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#9B6E1A" stopOpacity="0.65" />
-          </linearGradient>
-
-          {/* E+D Left Spine Gradient */}
-          <linearGradient id={`${idPrefix}-spine`} x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FFF0B3" />
-            <stop offset="30%" stopColor="#FCD34D" />
-            <stop offset="70%" stopColor="#E8B84B" />
-            <stop offset="100%" stopColor="#C9922A" />
-          </linearGradient>
-
-          {/* E+D Outer Loop Gradient (Top/Bottom E arms + D curve) */}
-          <linearGradient id={`${idPrefix}-loop`} x1="18" y1="14" x2="52" y2="50" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FFF5CC" />
-            <stop offset="25%" stopColor="#FCD34D" />
-            <stop offset="65%" stopColor="#E8B84B" />
-            <stop offset="100%" stopColor="#9B6E1A" />
-          </linearGradient>
-
-          {/* E Middle Horizontal Core Bar Gradient */}
-          <linearGradient id={`${idPrefix}-mid`} x1="18" y1="32" x2="38" y2="32" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FFF5CC" />
-            <stop offset="50%" stopColor="#FCD34D" />
-            <stop offset="100%" stopColor="#E8B84B" />
-          </linearGradient>
-
-          {/* Subtle Ambient Drop Shadow */}
-          <filter id={`${idPrefix}-glow`} x="4" y="4" width="56" height="56" filterUnits="userSpaceOnUse">
-            <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" floodColor="#C9922A" floodOpacity="0.4" />
-          </filter>
-        </defs>
-
-        {/* Squircle Badge Container */}
+        {/* Sharp Box Container */}
         <rect
           x="1.5"
           y="1.5"
           width="61"
           height="61"
-          rx="16"
-          fill={`url(#${idPrefix}-bg)`}
-          stroke={`url(#${idPrefix}-border)`}
+          fill="#0D1117"
+          stroke="#C7FF3D"
+          strokeOpacity="0.35"
           strokeWidth="1.5"
         />
 
-        {/* Ambient Center Glow */}
-        <circle cx="32" cy="32" r="18" fill="#C9922A" opacity="0.12" />
+        {/* Ambient Top Glow */}
+        <rect
+          x="2"
+          y="2"
+          width="60"
+          height="12"
+          fill="#C7FF3D"
+          fillOpacity="0.06"
+        />
 
-        {/* Merged E+D Monogram Mark */}
-        <g filter={`url(#${idPrefix}-glow)`}>
-          {/* Shared Vertical Backbone (Spine of both E and D) */}
-          <rect
-            x="14"
-            y="13.5"
-            width="7.5"
-            height="37"
-            rx="3.75"
-            fill={`url(#${idPrefix}-spine)`}
+        {/* Kinetic MT Monogram */}
+        <g strokeLinecap="square" strokeLinejoin="miter">
+          {/* M Glyph — Acid Green */}
+          <path
+            d="M 13 47 L 13 17 L 23.5 31.5 L 34 17 L 34 47"
+            stroke="#C7FF3D"
+            strokeWidth="4"
           />
 
-          {/* D Outer Loop & E Top/Bottom Prongs */}
+          {/* T Glyph — Off-White */}
           <path
-            d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47"
-            stroke={`url(#${idPrefix}-loop)`}
-            strokeWidth="7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            d="M 33 17 L 51 17"
+            stroke="#ECEEF2"
+            strokeWidth="4"
           />
-
-          {/* E Middle Arm (Extending into D's interior counter) */}
           <path
-            d="M 18 32 L 35.5 32"
-            stroke={`url(#${idPrefix}-mid)`}
-            strokeWidth="6.5"
-            strokeLinecap="round"
+            d="M 42 17 L 42 47"
+            stroke="#ECEEF2"
+            strokeWidth="4"
           />
         </g>
+
+        {/* Acid Accent Dot */}
+        <rect x="48" y="43" width="4" height="4" fill="#C7FF3D" />
       </svg>
     </div>
   );
@@ -167,13 +123,13 @@ export const Logo: React.FC<LogoProps> = ({
     return (
       <div className={`inline-flex flex-col justify-center select-none ${className}`}>
         <span
-          className={`font-extrabold tracking-tight ${textStyles.title} ${titleColor} leading-none font-sans`}
+          className={`font-black tracking-tight ${textStyles.title} ${titleColor} leading-none font-display uppercase`}
         >
           MEDIA-TARDS<span className={dotColor}>.</span>
         </span>
         {showTagline && (
           <span
-            className={`font-mono uppercase font-medium mt-0.5 ${textStyles.tag} ${tagColor}`}
+            className={`font-mono uppercase font-bold mt-0.5 ${textStyles.tag} ${tagColor}`}
           >
             Digital Growth Studio
           </span>
@@ -189,14 +145,14 @@ export const Logo: React.FC<LogoProps> = ({
 
       <div className="flex flex-col justify-center select-none">
         <span
-          className={`font-extrabold tracking-tight ${textStyles.title} ${titleColor} leading-none font-sans`}
+          className={`font-black tracking-tight ${textStyles.title} ${titleColor} leading-none font-display uppercase`}
         >
           MEDIA-TARDS<span className={dotColor}>.</span>
         </span>
 
         {showTagline && variant === 'full' && (
           <span
-            className={`font-mono uppercase font-medium mt-0.5 ${textStyles.tag} ${tagColor}`}
+            className={`font-mono uppercase font-bold mt-0.5 ${textStyles.tag} ${tagColor}`}
           >
             Digital Growth Studio
           </span>

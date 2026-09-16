@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, CheckCircle2, MessageSquare, Mail, Clock, AlertCircle, Loader2 } from 'lucide-react';
 import { CONTACT } from '../config/contact';
+import { SITE_CONFIG } from '../config/site';
 import { MagneticButton } from './ui/MagneticButton';
 
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
@@ -116,16 +117,16 @@ export const InteractiveAuditSection: React.FC = () => {
           <div className="glass-panel-hi p-6 font-mono text-xs space-y-3 min-w-[260px]" style={{ borderColor: 'rgba(199,255,61,0.15)' }}>
             <div>
               <span className="text-[#C7FF3D] uppercase tracking-widest font-bold block text-[9px]">PROJECT STATUS</span>
-              <span className="text-[#ECEEF2] font-bold">● OPEN FOR Q3 SPRINT</span>
+              <span className="text-[#ECEEF2] font-bold">{SITE_CONFIG.availability.auditStatus}</span>
             </div>
             <div className="pt-2 border-t border-white/[0.06]">
               <span className="text-[#C7FF3D] uppercase tracking-widest font-bold block text-[9px]">LOCATION</span>
-              <span className="text-[#ECEEF2] font-bold">MUMBAI / GLOBAL EDGE</span>
+              <span className="text-[#ECEEF2] font-bold">{SITE_CONFIG.location}</span>
             </div>
             <div className="pt-2 border-t border-white/[0.06]">
               <span className="text-[#C7FF3D] uppercase tracking-widest font-bold block text-[9px]">DIRECT EMAIL</span>
-              <a href="mailto:founders@mediatards.agency" className="text-[#ECEEF2] hover:text-[#C7FF3D] transition-colors font-semibold">
-                founders@mediatards.agency
+              <a href={`mailto:${SITE_CONFIG.email}`} className="text-[#ECEEF2] hover:text-[#C7FF3D] transition-colors font-semibold">
+                {SITE_CONFIG.email}
               </a>
             </div>
           </div>

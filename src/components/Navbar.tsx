@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 import { MagneticButton } from './ui/MagneticButton';
 import { useTextScramble } from '../hooks/useTextScramble';
+import { SITE_CONFIG } from '../config/site';
 
 const navLinks = [
   { label: 'Services', href: '#services' },
@@ -146,7 +147,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8A92A6] uppercase font-semibold tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D] animate-pulse" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
-              <span>Q3 OPEN</span>
+              <span>{SITE_CONFIG.availability.navPill}</span>
             </div>
 
             <MagneticButton
@@ -231,7 +232,7 @@ export const Navbar: React.FC = () => {
                   className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D] animate-pulse"
                   style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }}
                 />
-                <span>Accepting 3 new client partners for Q3</span>
+                <span>{SITE_CONFIG.availability.bannerText}</span>
               </div>
             </div>
 

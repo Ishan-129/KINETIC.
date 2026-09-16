@@ -20,8 +20,8 @@ export const AuraClinicPreview: React.FC = () => {
 
   if (bookingConfirmed) {
     return (
-      <div className="bg-obsidian-950 border border-emerald-500/40 rounded-2xl p-8 text-center animate-fade-in">
-        <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-4">
+      <div className="bg-obsidian-950 border border-emerald-500/40 rounded-none p-8 text-center animate-fade-in">
+        <div className="w-16 h-16 rounded-none bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <h4 className="text-2xl font-bold text-white mb-2">Appointment Reserved</h4>
@@ -40,7 +40,7 @@ export const AuraClinicPreview: React.FC = () => {
   }
 
   return (
-    <div className="bg-obsidian-950 border border-surface-border rounded-2xl p-6 sm:p-8">
+    <div className="bg-obsidian-950 border border-surface-border rounded-none p-6 sm:p-8">
       {/* Mock Clinic Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-surface-border gap-4">
         <div>
@@ -55,7 +55,7 @@ export const AuraClinicPreview: React.FC = () => {
             Transparent pricing, zero waiting room paperwork, instant direct confirmation.
           </p>
         </div>
-        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-mono w-fit">
+        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-none text-xs font-mono w-fit">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>Next Available Today</span>
         </div>
@@ -74,7 +74,7 @@ export const AuraClinicPreview: React.FC = () => {
                 <div
                   key={t.name}
                   onClick={() => setSelectedTreatment(t.name)}
-                  className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                  className={`p-3.5 rounded-none border cursor-pointer transition-all flex items-center justify-between ${
                     isSelected
                       ? 'bg-sky-500/10 border-sky-400/50 text-white'
                       : 'bg-obsidian-900 border-surface-border text-slate-300 hover:border-slate-600'
@@ -84,7 +84,7 @@ export const AuraClinicPreview: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold">{t.name}</span>
                       {t.popular && (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-400/20 text-sky-300">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-sky-400/20 text-sky-300">
                           Popular
                         </span>
                       )}
@@ -97,10 +97,10 @@ export const AuraClinicPreview: React.FC = () => {
                       <span className="text-slate-300 font-mono">{t.price}</span>
                     </div>
                   </div>
-                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                  <div className={`w-4 h-4 rounded-none border flex items-center justify-center ${
                     isSelected ? 'border-sky-400 bg-sky-400' : 'border-slate-600'
                   }`}>
-                    {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-obsidian-950" />}
+                    {isSelected && <div className="w-2 h-2 bg-obsidian-950" />}
                   </div>
                 </div>
               );
@@ -122,7 +122,7 @@ export const AuraClinicPreview: React.FC = () => {
                 <button
                   key={doc}
                   onClick={() => setSelectedDoctor(doc)}
-                  className={`p-2.5 rounded-xl border text-xs font-medium flex items-center gap-2 transition-all ${
+                  className={`p-2.5 rounded-none border text-xs font-medium flex items-center gap-2 transition-all ${
                     selectedDoctor === doc
                       ? 'bg-sky-500/10 border-sky-400 text-white'
                       : 'bg-obsidian-900 border-surface-border text-slate-400 hover:text-slate-200'
@@ -143,7 +143,7 @@ export const AuraClinicPreview: React.FC = () => {
                 <button
                   key={time}
                   onClick={() => setSelectedTime(time)}
-                  className={`py-2 px-3 rounded-lg border text-xs font-mono transition-all text-center ${
+                  className={`py-2 px-3 rounded-none border text-xs font-mono transition-all text-center ${
                     selectedTime === time
                       ? 'bg-sky-400 text-obsidian-950 font-bold border-sky-400'
                       : 'bg-obsidian-900 border-surface-border text-slate-300 hover:border-slate-500'
@@ -157,7 +157,7 @@ export const AuraClinicPreview: React.FC = () => {
 
           {/* Confirmation Box */}
           <div className="pt-4 border-t border-surface-border mt-4">
-            <div className="bg-obsidian-900/80 p-3.5 rounded-xl border border-surface-border mb-4 text-xs text-slate-300 flex items-center justify-between">
+            <div className="bg-obsidian-900/80 p-3.5 rounded-none border border-surface-border mb-4 text-xs text-slate-300 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-sky-400" />
                 <span>Today, {selectedTime}</span>

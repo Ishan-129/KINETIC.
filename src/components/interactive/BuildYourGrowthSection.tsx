@@ -64,26 +64,26 @@ export const BuildYourGrowthSection: React.FC = () => {
   const currentFlow = flows[activeChoice];
 
   return (
-    <section className="py-24 sm:py-36 bg-studio-ink text-[#F5F2EB] border-t border-studio-ink relative overflow-hidden" id="interactive-builder">
+    <section className="py-24 sm:py-36 bg-[#080B12] text-[#ECEEF2] border-t border-white/[0.06] relative overflow-hidden" id="interactive-builder">
       {/* Subtle Studio Grid Overlay */}
-      <div className="absolute inset-0 bg-studio-grid-dark pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-studio-grid pointer-events-none opacity-40" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="mb-14 sm:mb-20 pb-8 border-b border-white/20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="mb-14 sm:mb-20 pb-8 border-b border-white/[0.08] flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-accent-acid animate-pulse" />
-              <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-accent-acid uppercase font-bold">
+              <span className="w-2 h-2 rounded-full bg-[#C7FF3D] animate-pulse" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
+              <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-[#C7FF3D] uppercase font-bold">
                 INTERACTIVE GROWTH ARCHITECTURE
               </span>
             </div>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-[#F5F2EB] tracking-tight leading-none uppercase">
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-[#ECEEF2] tracking-tight leading-none uppercase">
               What Does Your<br />
               Business Need?
             </h2>
           </div>
-          <p className="text-[#F5F2EB]/70 text-base sm:text-lg max-w-md font-medium leading-relaxed">
+          <p className="text-[#8A92A6] text-base sm:text-lg max-w-md font-body leading-relaxed">
             Select a service or connect all three. Watch how MEDIA-TARDS engineers your custom growth engine from zero to launched.
           </p>
         </div>
@@ -104,16 +104,16 @@ export const BuildYourGrowthSection: React.FC = () => {
                 onClick={() => setActiveChoice(item.id as GrowthChoice)}
                 data-cursor="select"
                 data-cursor-text={`BUILD ${item.id.toUpperCase()}`}
-                className={`p-4 sm:p-6 text-left border-2 transition-all duration-200 relative group ${
+                className={`p-4 sm:p-6 text-left border transition-all duration-200 relative group ${
                   isSelected
-                    ? 'bg-accent-acid text-studio-ink border-accent-acid shadow-acid-glow scale-[1.02]'
-                    : 'bg-studio-ink/80 text-[#F5F2EB] border-white/20 hover:border-white/60 hover:bg-studio-ink'
+                    ? 'bg-[#C7FF3D] text-[#080B12] border-[#C7FF3D] shadow-acid-glow scale-[1.01]'
+                    : 'bg-[#0D1117] text-[#8A92A6] border-white/[0.08] hover:border-white/[0.20] hover:text-[#ECEEF2] hover:bg-[#13181F]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <Icon className={`w-5 h-5 ${isSelected ? 'text-studio-ink' : 'text-studio-gold'}`} />
+                  <Icon className={`w-5 h-5 ${isSelected ? 'text-[#080B12]' : 'text-[#C7FF3D]'}`} />
                   {isSelected && (
-                    <span className="font-mono text-[10px] font-black uppercase tracking-widest px-2 py-0.5 bg-studio-ink text-accent-acid">
+                    <span className="font-mono text-[10px] font-black uppercase tracking-widest px-2 py-0.5 bg-[#080B12] text-[#C7FF3D]">
                       ACTIVE
                     </span>
                   )}
@@ -122,7 +122,7 @@ export const BuildYourGrowthSection: React.FC = () => {
                 <div className="font-mono text-sm sm:text-base font-extrabold tracking-wider mb-1">
                   {item.label}
                 </div>
-                <div className={`font-mono text-[11px] ${isSelected ? 'text-studio-ink/80 font-bold' : 'text-[#F5F2EB]/60'}`}>
+                <div className={`font-mono text-[11px] ${isSelected ? 'text-[#080B12]/80 font-bold' : 'text-[#525C71]'}`}>
                   {item.sub}
                 </div>
               </button>
@@ -131,7 +131,7 @@ export const BuildYourGrowthSection: React.FC = () => {
         </div>
 
         {/* ── Interactive Workflow Visualizer Box ── */}
-        <div className="bg-[#090D22] border-2 border-white/20 p-6 sm:p-12 relative shadow-studio-lg">
+        <div className="bg-[#0D1117] border border-white/[0.08] p-6 sm:p-12 relative shadow-panel-elevated">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeChoice}
@@ -141,20 +141,20 @@ export const BuildYourGrowthSection: React.FC = () => {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Workflow Metadata */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-white/10 gap-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-white/[0.06] gap-4">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-studio-gold font-bold block mb-1">
+                  <span className="font-mono text-xs uppercase tracking-widest text-[#C7FF3D] font-bold block mb-1">
                     ENGINE ARCHITECTURE //
                   </span>
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+                  <h3 className="font-display text-2xl sm:text-3xl font-black text-[#ECEEF2] tracking-tight uppercase">
                     {currentFlow.title}
                   </h3>
-                  <p className="text-sm text-[#F5F2EB]/70 mt-1 max-w-xl">
+                  <p className="text-sm text-[#8A92A6] mt-1 max-w-xl font-body">
                     {currentFlow.subtitle}
                   </p>
                 </div>
 
-                <div className="font-mono text-xs text-accent-acid bg-accent-acid/10 border border-accent-acid/30 px-3.5 py-2 font-bold shrink-0">
+                <div className="font-mono text-xs text-[#C7FF3D] bg-[#C7FF3D]/10 border border-[#C7FF3D]/30 px-3.5 py-2 font-bold shrink-0">
                   {activeChoice === 'all' ? '● SYNCHRONIZED LOOP' : '● MODULAR PIPELINE'}
                 </div>
               </div>
@@ -167,27 +167,27 @@ export const BuildYourGrowthSection: React.FC = () => {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.08, duration: 0.3 }}
-                    className="p-5 bg-studio-ink border border-white/20 relative group hover:border-studio-gold transition-colors"
+                    className="p-5 bg-[#080B12] border border-white/[0.08] relative group hover:border-[#C7FF3D]/40 transition-colors"
                   >
                     {/* Top Step Number & Stage */}
-                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 font-mono text-xs">
-                      <span className="text-studio-gold font-bold">0{idx + 1}</span>
-                      <span className="px-2 py-0.5 bg-white/10 text-[10px] font-bold text-white uppercase">
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.06] font-mono text-xs">
+                      <span className="text-[#C7FF3D] font-bold">0{idx + 1}</span>
+                      <span className="px-2 py-0.5 bg-white/[0.06] text-[10px] font-bold text-[#ECEEF2] uppercase font-mono">
                         {step.metric}
                       </span>
                     </div>
 
-                    <div className="font-display text-lg font-extrabold text-white tracking-tight mb-2">
+                    <div className="font-display text-lg font-extrabold text-[#ECEEF2] tracking-tight mb-2">
                       {step.title}
                     </div>
 
-                    <p className="text-xs text-[#F5F2EB]/70 font-mono leading-relaxed">
+                    <p className="text-xs text-[#8A92A6] font-mono leading-relaxed">
                       {step.sub}
                     </p>
 
                     {/* Step Connector Indicator for larger screens */}
                     {idx < 3 && (
-                      <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-20 text-studio-gold font-mono text-xs">
+                      <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-20 text-[#C7FF3D] font-mono text-xs">
                         →
                       </div>
                     )}
@@ -196,15 +196,15 @@ export const BuildYourGrowthSection: React.FC = () => {
               </div>
 
               {/* End Statement & Growth Outcome */}
-              <div className="mt-10 p-6 bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="mt-10 p-6 bg-[#080B12] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <Zap className="w-5 h-5 text-accent-acid shrink-0" />
-                  <p className="font-mono text-xs sm:text-sm text-[#F5F2EB]/90">
+                  <Zap className="w-5 h-5 text-[#C7FF3D] shrink-0" />
+                  <p className="font-mono text-xs sm:text-sm text-[#ECEEF2]">
                     {currentFlow.loopNote}
                   </p>
                 </div>
 
-                <span className="font-mono text-xs text-studio-gold font-bold uppercase shrink-0">
+                <span className="font-mono text-xs text-[#C7FF3D] font-bold uppercase shrink-0">
                   Ready to deploy ↗
                 </span>
               </div>
@@ -212,14 +212,14 @@ export const BuildYourGrowthSection: React.FC = () => {
           </AnimatePresence>
 
           {/* ── Signature Brand Punchline & CTA ── */}
-          <div className="mt-14 pt-10 border-t border-white/20 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="mt-14 pt-10 border-t border-white/[0.08] flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div>
-              <span className="font-mono text-xs font-bold text-accent-acid tracking-[0.25em] uppercase block mb-2">
+              <span className="font-mono text-xs font-bold text-[#C7FF3D] tracking-[0.25em] uppercase block mb-2">
                 THE MEDIA-TARDS STANDARD
               </span>
-              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#F5F2EB] tracking-tighter uppercase">
+              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#ECEEF2] tracking-tighter uppercase">
                 LOOKS GOOD.<br />
-                <span className="text-studio-gold">WORKS HARDER.</span>
+                <span className="text-[#C7FF3D]">WORKS HARDER.</span>
               </div>
             </div>
 
@@ -228,7 +228,7 @@ export const BuildYourGrowthSection: React.FC = () => {
                 as="a"
                 href="#audit"
                 cursorText="START PROJECT ↗"
-                className="w-full sm:w-auto px-8 py-4.5 bg-accent-acid text-studio-ink font-mono font-black text-xs uppercase tracking-widest hover:bg-white transition-colors duration-200 shadow-acid-glow"
+                className="w-full sm:w-auto px-8 py-4.5 bg-[#C7FF3D] text-[#080B12] font-mono font-black text-xs uppercase tracking-widest hover:bg-white transition-colors duration-200 shadow-acid-glow"
               >
                 <div className="flex items-center gap-3">
                   <span>Start a Project</span>
@@ -239,7 +239,7 @@ export const BuildYourGrowthSection: React.FC = () => {
               <a
                 href="#pricing"
                 data-cursor="explore"
-                className="w-full sm:w-auto px-6 py-4 text-center font-mono text-xs uppercase tracking-wider font-bold text-white border border-white/30 hover:border-white transition-colors"
+                className="w-full sm:w-auto px-6 py-4 text-center font-mono text-xs uppercase tracking-wider font-bold text-[#8A92A6] border border-white/[0.12] hover:border-[#C7FF3D]/40 hover:text-[#ECEEF2] transition-colors"
               >
                 View Pricing Tiers →
               </a>

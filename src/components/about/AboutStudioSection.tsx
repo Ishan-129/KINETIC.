@@ -127,21 +127,31 @@ const FounderCard: React.FC<typeof founders[0] & { idx: number }> = ({
         </p>
       </div>
 
-      {/* Hover-reveal specialty */}
-      <div
-        className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] font-mono text-[10px] flex items-center justify-between overflow-hidden"
-        style={{ clipPath: hovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', transition: 'clip-path 0.4s cubic-bezier(0.22,1,0.36,1)' }}
-      >
-        <span className="text-[#525C71]">Domain:</span>
-        <span className="font-bold" style={{ color: accent }}>{deliverable}</span>
-      </div>
+      {/* Specialty hover reveal container */}
+      <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] font-mono text-[10px] min-h-[42px] flex items-center">
+        {/* Hover-reveal specialty */}
+        <div
+          className="w-full flex items-center justify-between transition-all duration-300 select-none"
+          style={{
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? 'translateY(0)' : 'translateY(4px)',
+            pointerEvents: hovered ? 'auto' : 'none',
+          }}
+        >
+          <span className="text-[#525C71]">Domain:</span>
+          <span className="font-bold text-right" style={{ color: accent }}>{deliverable}</span>
+        </div>
 
-      {/* Always-visible fallback for hover-reveal */}
-      <div
-        className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] font-mono text-[10px] text-[#525C71] absolute bottom-7"
-        style={{ opacity: hovered ? 0 : 1, transition: 'opacity 0.2s ease' }}
-      >
-        Hover to reveal specialty →
+        {/* Default prompt */}
+        <div
+          className="absolute inset-0 pt-4 flex items-center justify-between text-[#525C71] transition-all duration-200 pointer-events-none select-none"
+          style={{
+            opacity: hovered ? 0 : 1,
+            transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+          }}
+        >
+          <span>Hover to reveal specialty →</span>
+        </div>
       </div>
     </motion.div>
   );

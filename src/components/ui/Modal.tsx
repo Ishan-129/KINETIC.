@@ -50,7 +50,7 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -61,23 +61,23 @@ export const Modal: React.FC<ModalProps> = ({
 
           {/* Modal Dialog */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              'relative w-full bg-white border border-sand-300 rounded-2xl shadow-warm-xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col',
+              'relative w-full bg-[#0D1117] border border-white/[0.12] rounded-none shadow-panel-elevated overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col text-[#ECEEF2]',
               maxWidthStyles[maxWidth]
             )}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-sand-300 bg-ivory-50 sticky top-0 z-20">
-              <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#13181F] sticky top-0 z-20">
+              <h3 className="font-display text-lg font-black text-[#ECEEF2] uppercase tracking-tight">
                 {title || 'Project Preview'}
               </h3>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-ivory-200 transition-colors"
+                className="p-1.5 rounded-none text-[#8A92A6] hover:text-[#ECEEF2] hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -85,7 +85,7 @@ export const Modal: React.FC<ModalProps> = ({
             </div>
 
             {/* Scrollable Content */}
-            <div className="overflow-y-auto flex-1">
+            <div className="overflow-y-auto flex-1 bg-[#080B12]">
               {children}
             </div>
           </motion.div>

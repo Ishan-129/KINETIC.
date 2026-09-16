@@ -61,17 +61,17 @@ export const ForgeFitnessPreview: React.FC = () => {
 
   if (claimedPass) {
     return (
-      <div className="bg-obsidian-950 border border-amber-500/40 rounded-2xl p-8 text-center animate-fade-in">
-        <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto mb-4">
+      <div className="bg-obsidian-950 border border-amber-500/40 rounded-none p-8 text-center animate-fade-in">
+        <div className="w-16 h-16 rounded-none bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto mb-4">
           <Ticket className="w-8 h-8" />
         </div>
         <h4 className="text-2xl font-bold text-white mb-1">VIP Day Pass Issued!</h4>
         <p className="text-xs font-mono text-amber-400 mb-6">PASS ID: #FORGE-{Math.floor(100000 + Math.random() * 900000)}</p>
 
-        <div className="max-w-xs mx-auto bg-obsidian-900 border border-surface-border rounded-xl p-6 mb-6 text-left relative overflow-hidden shadow-2xl">
+        <div className="max-w-xs mx-auto bg-obsidian-900 border border-surface-border rounded-none p-6 mb-6 text-left relative overflow-hidden shadow-2xl">
           <div className="flex items-center justify-between border-b border-surface-border pb-3 mb-4">
             <span className="font-extrabold text-white tracking-wider text-sm">FORGE ATHLETICS</span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               ACTIVE
             </span>
           </div>
@@ -96,7 +96,7 @@ export const ForgeFitnessPreview: React.FC = () => {
   }
 
   return (
-    <div className="bg-obsidian-950 border border-surface-border rounded-2xl p-6 sm:p-8">
+    <div className="bg-obsidian-950 border border-surface-border rounded-none p-6 sm:p-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-surface-border gap-4">
         <div>
@@ -112,12 +112,12 @@ export const ForgeFitnessPreview: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 bg-obsidian-900 border border-surface-border p-1 rounded-xl">
+        <div className="flex items-center gap-1.5 bg-obsidian-900 border border-surface-border p-1 rounded-none">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-none text-xs font-medium transition-all ${
                 activeCategory === cat
                   ? 'bg-amber-400 text-obsidian-950 font-semibold'
                   : 'text-slate-400 hover:text-white'
@@ -136,12 +136,12 @@ export const ForgeFitnessPreview: React.FC = () => {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="p-4 rounded-xl bg-obsidian-900 border border-surface-border hover:border-slate-600 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              className="p-4 rounded-none bg-obsidian-900 border border-surface-border hover:border-slate-600 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
             >
               <div>
                 <div className="flex items-center gap-2">
                   <h5 className="font-semibold text-white text-sm">{item.title}</h5>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     {item.intensity}
                   </span>
                 </div>
@@ -160,7 +160,7 @@ export const ForgeFitnessPreview: React.FC = () => {
                 </span>
                 <button
                   onClick={() => setClaimedPass(true)}
-                  className="px-3 py-1.5 rounded-lg bg-obsidian-800 hover:bg-obsidian-700 text-white text-xs font-medium border border-surface-border transition-colors"
+                  className="px-3 py-1.5 rounded-none bg-obsidian-800 hover:bg-obsidian-700 text-white text-xs font-medium border border-surface-border transition-colors"
                 >
                   Reserve
                 </button>
@@ -170,9 +170,9 @@ export const ForgeFitnessPreview: React.FC = () => {
         </div>
 
         {/* 1-Click Pass Generator Column */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-amber-500/10 via-obsidian-900 to-obsidian-900 border border-amber-500/30 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-gradient-to-br from-amber-500/10 via-obsidian-900 to-obsidian-900 border border-amber-500/30 rounded-none p-6 flex flex-col justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-400/10 text-amber-400 text-xs font-mono mb-3 border border-amber-400/20">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-none bg-amber-400/10 text-amber-400 text-xs font-mono mb-3 border border-amber-400/20">
               <Flame className="w-3 h-3" /> 100% Free Trial Pass
             </div>
             <h4 className="text-lg font-bold text-white mb-2">Experience The Club Floor</h4>
@@ -189,7 +189,7 @@ export const ForgeFitnessPreview: React.FC = () => {
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   placeholder="e.g. Alex Morgan"
-                  className="w-full bg-obsidian-950 border border-surface-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400 placeholder:text-slate-600"
+                  className="w-full bg-obsidian-950 border border-surface-border rounded-none px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400 placeholder:text-slate-600"
                 />
               </div>
               <div>
@@ -200,7 +200,7 @@ export const ForgeFitnessPreview: React.FC = () => {
                   value={userPhone}
                   onChange={(e) => setUserPhone(e.target.value)}
                   placeholder="+1 (555) 019-2834"
-                  className="w-full bg-obsidian-950 border border-surface-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400 placeholder:text-slate-600"
+                  className="w-full bg-obsidian-950 border border-surface-border rounded-none px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400 placeholder:text-slate-600"
                 />
               </div>
 

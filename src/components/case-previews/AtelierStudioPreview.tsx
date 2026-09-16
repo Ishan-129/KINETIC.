@@ -27,8 +27,8 @@ export const AtelierStudioPreview: React.FC = () => {
 
   if (consultationBooked) {
     return (
-      <div className="bg-obsidian-950 border border-emerald-500/40 rounded-2xl p-8 text-center animate-fade-in">
-        <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-4">
+      <div className="bg-obsidian-950 border border-emerald-500/40 rounded-none p-8 text-center animate-fade-in">
+        <div className="w-16 h-16 rounded-none bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <h4 className="text-2xl font-bold text-white mb-2">Project Brief Submitted</h4>
@@ -47,7 +47,7 @@ export const AtelierStudioPreview: React.FC = () => {
   }
 
   return (
-    <div className="bg-obsidian-950 border border-surface-border rounded-2xl p-6 sm:p-8">
+    <div className="bg-obsidian-950 border border-surface-border rounded-none p-6 sm:p-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-surface-border gap-4">
         <div>
@@ -63,7 +63,7 @@ export const AtelierStudioPreview: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-mono w-fit">
+        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-none text-xs font-mono w-fit">
           <Sparkles className="w-3 h-3" />
           <span>Bespoke Engineering</span>
         </div>
@@ -82,7 +82,7 @@ export const AtelierStudioPreview: React.FC = () => {
                 <div
                   key={t.name}
                   onClick={() => setProjectType(t.name)}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all flex items-center justify-between text-xs sm:text-sm ${
+                  className={`p-3 rounded-none border cursor-pointer transition-all flex items-center justify-between text-xs sm:text-sm ${
                     projectType === t.name
                       ? 'bg-emerald-500/10 border-emerald-400/50 text-white font-medium'
                       : 'bg-obsidian-900 border-surface-border text-slate-400 hover:text-slate-200'
@@ -105,7 +105,7 @@ export const AtelierStudioPreview: React.FC = () => {
                 <button
                   key={f.name}
                   onClick={() => setFinish(f.name)}
-                  className={`p-2.5 rounded-xl border text-xs font-medium transition-all text-left ${
+                  className={`p-2.5 rounded-none border text-xs font-medium transition-all text-left ${
                     finish === f.name
                       ? 'bg-emerald-500/10 border-emerald-400 text-white'
                       : 'bg-obsidian-900 border-surface-border text-slate-400 hover:text-slate-200'
@@ -134,13 +134,13 @@ export const AtelierStudioPreview: React.FC = () => {
               step="50"
               value={scopeSqFt}
               onChange={(e) => setScopeSqFt(Number(e.target.value))}
-              className="w-full h-2 bg-obsidian-900 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+              className="w-full h-2 bg-obsidian-900 rounded-none appearance-none cursor-pointer accent-emerald-400"
             />
           </div>
         </div>
 
         {/* Output Estimation Column */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-emerald-500/10 via-obsidian-900 to-obsidian-900 border border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-gradient-to-br from-emerald-500/10 via-obsidian-900 to-obsidian-900 border border-emerald-500/30 rounded-none p-6 flex flex-col justify-between">
           <div>
             <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-2">
               Estimated Investment Scope

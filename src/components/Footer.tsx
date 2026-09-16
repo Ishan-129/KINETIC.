@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowUpRight, MessageSquare, Mail, ShieldCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { CONTACT } from '../config/contact';
+import { SITE_CONFIG } from '../config/site';
 import { MagneticButton } from './ui/MagneticButton';
 import { motion } from 'framer-motion';
 
@@ -125,14 +126,14 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand */}
           <div className="md:col-span-5 space-y-4">
             <a href="#" className="inline-block group" data-cursor="explore">
-              <Logo theme="light" size="md" variant="full" />
+              <Logo theme="dark" size="md" variant="full" />
             </a>
             <p className="text-[#525C71] text-xs sm:text-sm leading-relaxed max-w-sm font-body">
               A kinetic digital growth studio. Custom websites, ongoing social media systems, and lead generation ads handcrafted directly by 3 founding partners.
             </p>
             <div className="flex items-center gap-2 font-mono text-[10px] pt-2 font-bold" style={{ color: '#C7FF3D' }}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D] animate-pulse" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
-              <span>Accepting 3 new client partners for Q3</span>
+              <span>{SITE_CONFIG.availability.bannerText}</span>
             </div>
           </div>
 

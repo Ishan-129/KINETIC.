@@ -27,25 +27,25 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 disabled:opacity-50 disabled:cursor-not-allowed select-none group';
+    'inline-flex items-center justify-center font-semibold rounded-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#C7FF3D]/40 disabled:opacity-50 disabled:cursor-not-allowed select-none group';
 
   const sizeStyles = {
-    sm: 'text-xs px-4 py-2 rounded-lg gap-1.5',
-    md: 'text-sm px-5 py-2.5 rounded-xl gap-2',
-    lg: 'text-base px-7 py-3.5 rounded-xl gap-2.5',
+    sm: 'text-xs px-4 py-2 rounded-none gap-1.5 font-mono',
+    md: 'text-sm px-5 py-2.5 rounded-none gap-2 font-mono',
+    lg: 'text-base px-7 py-3.5 rounded-none gap-2.5 font-mono',
   };
 
   const variantStyles = {
-    /** Rich gold CTA — the primary action */
-    glow: 'bg-gradient-to-r from-accent-gold to-accent-gold-light text-white shadow-gold hover:shadow-gold-lg hover:brightness-105 active:scale-[0.98] btn-gold-shimmer',
-    /** Navy solid — strong secondary CTA */
-    primary: 'bg-accent-navy text-white hover:bg-accent-navy-dark hover:shadow-warm-md active:scale-[0.98]',
-    /** White card button */
-    secondary: 'bg-white text-slate-800 border border-sand-300 hover:border-sand-400 hover:shadow-warm-sm active:scale-[0.98]',
-    /** Transparent with warm border */
-    outline: 'bg-transparent text-slate-700 border border-sand-400 hover:border-accent-gold hover:text-accent-gold active:scale-[0.98]',
+    /** Acid Green CTA — the primary action */
+    glow: 'bg-[#C7FF3D] text-[#080B12] font-mono font-black uppercase tracking-wider hover:bg-white shadow-acid-glow active:scale-[0.98]',
+    /** Solid CTA */
+    primary: 'bg-[#C7FF3D] text-[#080B12] font-mono font-black uppercase tracking-wider hover:bg-white active:scale-[0.98]',
+    /** Panel dark secondary button */
+    secondary: 'bg-[#0D1117] text-[#ECEEF2] border border-white/[0.12] hover:border-[#C7FF3D]/40 hover:text-[#C7FF3D] font-mono font-bold uppercase tracking-wider active:scale-[0.98]',
+    /** Outline with hairline border */
+    outline: 'bg-transparent text-[#8A92A6] border border-white/[0.12] hover:border-[#C7FF3D]/40 hover:text-[#ECEEF2] font-mono font-bold uppercase tracking-wider active:scale-[0.98]',
     /** Ghost — minimal */
-    ghost: 'bg-transparent text-slate-600 hover:text-accent-gold hover:bg-sand-300/40',
+    ghost: 'bg-transparent text-[#8A92A6] hover:text-[#ECEEF2] hover:bg-white/5 font-mono font-bold uppercase tracking-wider',
   };
 
   const combinedClass = cn(baseStyles, sizeStyles[size], variantStyles[variant], className);

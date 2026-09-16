@@ -3,6 +3,7 @@ import { motion, Variants, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, ArrowDown } from 'lucide-react';
 import { MediaObjectCanvas } from './hero/MediaObjectCanvas';
 import { MagneticButton } from './ui/MagneticButton';
+import { SITE_CONFIG } from '../config/site';
 
 export const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -92,10 +93,10 @@ export const HeroSection: React.FC = () => {
                 className="w-1 h-1 rounded-full bg-[#C7FF3D] animate-pulse"
                 style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }}
               />
-              AVAILABLE FOR Q3
+              {SITE_CONFIG.availability.heroBadge}
             </span>
             <span className="text-[#525C71]">·</span>
-            <span>MUMBAI / IN · EST. 2024</span>
+            <span>MUMBAI / IN · EST. {SITE_CONFIG.foundingYear}</span>
           </div>
         </motion.div>
 

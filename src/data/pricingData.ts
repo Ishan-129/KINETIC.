@@ -1,20 +1,3 @@
-export interface ServicePricingItem {
-  id: string;
-  category: string;
-  title: string;
-  description: string;
-  price: string;
-  pricePrefix?: string;
-  currency?: string;
-  billing: string;
-  features: string[];
-  cta: string;
-  adSpendNote?: {
-    title: string;
-    description: string;
-  };
-}
-
 export interface BundleFeatureGroup {
   title: string;
   subtitle?: string;
@@ -48,86 +31,11 @@ export interface PricingFAQItem {
   answer: string;
 }
 
-export const CORE_SERVICES: ServicePricingItem[] = [
-  {
-    id: 'service-website',
-    category: 'WEBSITE',
-    title: 'Complete Website Pack',
-    description: 'A professionally designed website built once, launched for your business, and ready to turn visitors into enquiries.',
-    currency: '₹',
-    price: '7,999',
-    billing: 'One-time',
-    features: [
-      'Professional website',
-      '1–3 pages',
-      'Responsive design',
-      'WhatsApp integration',
-      'Contact / enquiry form',
-      'Google Maps',
-      'Basic SEO',
-      'Mobile optimization',
-      'Fast-loading setup',
-      'Basic analytics',
-    ],
-    cta: 'Build My Website',
-  },
-  {
-    id: 'service-social',
-    category: 'SOCIAL MEDIA',
-    title: 'Full Social Media Management',
-    description: 'We handle your content, posting and social presence so your business stays active, consistent and relevant.',
-    pricePrefix: 'Starting at',
-    currency: '₹',
-    price: '5,999',
-    billing: '/month',
-    features: [
-      'Social media management',
-      'Content strategy',
-      'Content calendar',
-      'Creative posts',
-      'Reels',
-      'Captions & hashtags',
-      'Posting & scheduling',
-      'Basic community management',
-      'Monthly analytics',
-      'Competitor research',
-    ],
-    cta: 'Grow My Socials',
-  },
-  {
-    id: 'service-leads',
-    category: 'LEAD GENERATION',
-    title: 'Marketing + Lead Ads',
-    description: 'Turn your advertising budget into qualified enquiries through targeted campaigns across Meta and Google.',
-    pricePrefix: 'Starting at',
-    currency: '₹',
-    price: '4,999',
-    billing: '/month',
-    features: [
-      'Meta Ads management',
-      'Campaign setup',
-      'Audience research',
-      'Ad creatives',
-      'Lead forms',
-      'WhatsApp lead integration',
-      'Tracking',
-      'Campaign optimization',
-      'Retargeting',
-      'Monthly reporting',
-    ],
-    adSpendNote: {
-      title: 'Ad spend is separate.',
-      description: 'Your advertising budget is paid directly to the advertising platform and is not included in our management fee.',
-    },
-    cta: 'Get More Leads',
-  },
-];
-
 export const BUNDLE_PACKAGES: BundlePricingItem[] = [
   {
     id: 'bundle-get-online',
     name: 'Get Online',
-    price: '9,999',
+    price: '7,999',
     currency: '₹',
     billing: 'One-time',
     billingClarification: 'One-time website setup',
