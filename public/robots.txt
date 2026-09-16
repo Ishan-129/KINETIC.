@@ -1,0 +1,36 @@
+# MEDIA-TARDS — robots.txt
+# https://mediatards.agency
+
+# Allow all well-behaved crawlers to index all public pages
+User-agent: *
+Allow: /
+
+# Block internal/build paths (Vite, Vercel)
+Disallow: /assets/
+Allow: /assets/*.js
+Allow: /assets/*.css
+Allow: /assets/*.woff2
+Allow: /assets/*.png
+Allow: /assets/*.svg
+
+# Reference the production sitemap
+Sitemap: https://mediatards.agency/sitemap.xml
+
+# AI Crawlers — explicitly permitted for llms.txt discoverability
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kinetic Logo & Favicon Showcase</title>
+  <title>MEDIA-TARDS — Logo & Favicon Brand System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -120,14 +120,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>KINETIC — Brand Logo & Favicon System</h1>
-    <p class="sub">High-precision vector identity, multi-scale favicon legibility, and responsive navbar integration</p>
+    <h1>MEDIA-TARDS — Brand Logo & Favicon System</h1>
+    <p class="sub">Custom merged E+D monogram, vector identity, multi-scale favicon legibility, and responsive navbar integration</p>
 
     <div class="grid">
-      <!-- VARIANT A: Signature Obsidian Squircle Badge + Kinetic Vector -->
+      <!-- VARIANT A: Signature Obsidian Squircle Badge + Merged E+D Vector -->
       <div class="card">
-        <div class="card-title">A. The Signature Kinetic Badge</div>
-        <div class="card-desc">Deep obsidian squircle with brushed gold rim, light-swept pillar, and 45° velocity chevron.</div>
+        <div class="card-title">A. The Signature E+D Badge</div>
+        <div class="card-desc">Deep obsidian squircle with brushed gold rim, unified E/D spine, and internal E prong counter.</div>
 
         <div class="canvas-dark">
           <!-- Big 72px mark -->
@@ -138,34 +138,40 @@
                 <stop offset="100%" stop-color="#080A0F" />
               </linearGradient>
               <linearGradient id="a-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.8" />
-                <stop offset="50%" stop-color="#C9922A" stop-opacity="0.3" />
-                <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.6" />
+                <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.85" />
+                <stop offset="50%" stop-color="#C9922A" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.65" />
               </linearGradient>
-              <linearGradient id="a-pillar" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
+              <linearGradient id="a-spine" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stop-color="#FFF0B3" />
                 <stop offset="30%" stop-color="#FCD34D" />
                 <stop offset="70%" stop-color="#E8B84B" />
                 <stop offset="100%" stop-color="#C9922A" />
               </linearGradient>
-              <linearGradient id="a-chevron" x1="28" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+              <linearGradient id="a-loop" x1="18" y1="14" x2="52" y2="50" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stop-color="#FFF5CC" />
                 <stop offset="25%" stop-color="#FCD34D" />
                 <stop offset="65%" stop-color="#E8B84B" />
                 <stop offset="100%" stop-color="#9B6E1A" />
               </linearGradient>
-              <filter id="a-glow" x="6" y="6" width="52" height="52" filterUnits="userSpaceOnUse">
-                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#C9922A" flood-opacity="0.4" />
+              <linearGradient id="a-mid" x1="18" y1="32" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFF5CC" />
+                <stop offset="50%" stop-color="#FCD34D" />
+                <stop offset="100%" stop-color="#E8B84B" />
+              </linearGradient>
+              <filter id="a-glow" x="4" y="4" width="56" height="56" filterUnits="userSpaceOnUse">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="#C9922A" flood-opacity="0.4" />
               </filter>
             </defs>
             <!-- Badge Container -->
             <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#a-bg)" stroke="url(#a-border)" stroke-width="1.5" />
             <!-- Ambient Center Light -->
-            <circle cx="32" cy="32" r="20" fill="#C9922A" opacity="0.08" />
+            <circle cx="32" cy="32" r="18" fill="#C9922A" opacity="0.12" />
             <!-- Logo Mark -->
             <g filter="url(#a-glow)">
-              <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#a-pillar)" />
-              <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#a-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
             </g>
           </svg>
         </div>
@@ -175,11 +181,12 @@
           <div style="display:flex; align-items:center; gap:12px;">
             <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
               <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="#0A0D14" stroke="#C9922A" stroke-opacity="0.4" stroke-width="1.5" />
-              <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#a-pillar)" />
-              <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#a-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
             </svg>
             <div>
-              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">KINETIC<span style="color:#C9922A;">.</span></div>
+              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">MEDIA-TARDS<span style="color:#C9922A;">.</span></div>
               <div style="font-size:9px; font-family:'JetBrains Mono',monospace; color:#64748B; letter-spacing:1.5px; text-transform:uppercase; margin-top:3px;">Digital Growth Studio</div>
             </div>
           </div>
@@ -190,20 +197,23 @@
           <!-- 16px -->
           <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="14" fill="#0A0D14" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="#FCD34D" />
-            <path d="M 48 14 L 29.5 32 L 48 50" stroke="#FCD34D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#FCD34D" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#FCD34D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="#FCD34D" stroke-width="7.5" stroke-linecap="round" />
           </svg>
           <!-- 24px -->
           <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="14" fill="#0A0D14" stroke="#C9922A" stroke-width="2" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="#FCD34D" />
-            <path d="M 48 14 L 29.5 32 L 48 50" stroke="#FCD34D" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#FCD34D" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#FCD34D" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="#FCD34D" stroke-width="7" stroke-linecap="round" />
           </svg>
           <!-- 32px -->
           <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="16" fill="#0A0D14" stroke="#C9922A" stroke-width="2" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#a-pillar)" />
-            <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#a-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
           </svg>
         </div>
 
@@ -212,45 +222,42 @@
           <div class="browser-tab-mock">
             <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
               <rect width="64" height="64" rx="14" fill="#0A0D14" />
-              <rect x="14" y="13" width="8" height="38" rx="4" fill="#FCD34D" />
-              <path d="M 48 14 L 29.5 32 L 48 50" stroke="#FCD34D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#FCD34D" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#FCD34D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="#FCD34D" stroke-width="7.5" stroke-linecap="round" />
             </svg>
-            <span>KINETIC — Growth Studio</span>
+            <span>MEDIA-TARDS — Creative Digital Agency</span>
           </div>
           <div class="browser-tab-light">
             <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
               <rect width="64" height="64" rx="14" fill="#0A0D14" />
-              <rect x="14" y="13" width="8" height="38" rx="4" fill="#FCD34D" />
-              <path d="M 48 14 L 29.5 32 L 48 50" stroke="#FCD34D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#FCD34D" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#FCD34D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="#FCD34D" stroke-width="7.5" stroke-linecap="round" />
             </svg>
-            <span>KINETIC — Growth Studio</span>
+            <span>MEDIA-TARDS — Creative Digital Agency</span>
           </div>
         </div>
       </div>
 
-      <!-- VARIANT B: Dual Kinetic Blades with Center Catalyst Core -->
+      <!-- VARIANT B: Dark Slate Theme -->
       <div class="card">
-        <div class="card-title">B. Kinetic Catalyst Core</div>
-        <div class="card-desc">Aerodynamic blades with central forward-pointing conversion arrow. High energy.</div>
+        <div class="card-title">B. Dark Theme Wordmark</div>
+        <div class="card-desc">Integrated E+D mark with crisp white typography and metallic gold punctuation accent.</div>
 
         <div class="canvas-dark">
-          <svg width="72" height="72" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="b-grad1" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFE07D" />
-                <stop offset="50%" stop-color="#E8B84B" />
-                <stop offset="100%" stop-color="#9B6E1A" />
-              </linearGradient>
-            </defs>
-            <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#0A0D14" stroke="#C9922A" stroke-opacity="0.35" stroke-width="1.5" />
-            <!-- Pillar -->
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#b-grad1)" />
-            <!-- Upper blade -->
-            <path d="M 27 28.5 L 44 14 C 45.2 13 47 13.2 47.8 14.5 L 48.5 15.6 C 49.3 16.9 49 18.6 47.8 19.5 L 34 32 Z" fill="url(#b-grad1)" />
-            <!-- Lower blade -->
-            <path d="M 27 35.5 L 34 32 L 47.8 44.5 C 49 45.4 49.3 47.1 48.5 48.4 L 47.8 49.5 C 47 50.8 45.2 51 44 50 L 27 35.5 Z" fill="url(#b-grad1)" />
-            <!-- Center Catalyst Arrow -->
-            <polygon points="26,32 31,27 36,32 31,37" fill="#FFF5CC" />
+          <svg width="220" height="56" viewBox="0 0 280 64" fill="none">
+            <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#a-bg)" stroke="url(#a-border)" stroke-width="1.5" />
+            <circle cx="32" cy="32" r="18" fill="#C9922A" opacity="0.12" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
+            <text x="76" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">
+              MEDIA-TARDS<tspan fill="#E8B84B">.</tspan>
+            </text>
+            <text x="76" y="48" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="9" fill="#93C5FD" letter-spacing="2">
+              DIGITAL GROWTH STUDIO
+            </text>
           </svg>
         </div>
 
@@ -258,13 +265,12 @@
           <div style="display:flex; align-items:center; gap:12px;">
             <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
               <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="#0A0D14" stroke="#C9922A" stroke-opacity="0.4" stroke-width="1.5" />
-              <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#b-grad1)" />
-              <path d="M 27 28.5 L 44 14 C 45.2 13 47 13.2 47.8 14.5 L 48.5 15.6 C 49.3 16.9 49 18.6 47.8 19.5 L 34 32 Z" fill="url(#b-grad1)" />
-              <path d="M 27 35.5 L 34 32 L 47.8 44.5 C 49 45.4 49.3 47.1 48.5 48.4 L 47.8 49.5 C 47 50.8 45.2 51 44 50 L 27 35.5 Z" fill="url(#b-grad1)" />
-              <polygon points="26,32 31,27 36,32 31,37" fill="#FFF5CC" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
             </svg>
             <div>
-              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">KINETIC<span style="color:#C9922A;">.</span></div>
+              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">MEDIA-TARDS<span style="color:#C9922A;">.</span></div>
               <div style="font-size:9px; font-family:'JetBrains Mono',monospace; color:#64748B; letter-spacing:1.5px; text-transform:uppercase; margin-top:3px;">Digital Growth Studio</div>
             </div>
           </div>
@@ -272,20 +278,17 @@
 
         <div class="favicons-bar">
           <span class="label">Favicons:</span>
-          <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
-            <rect width="64" height="64" rx="14" fill="#0A0D14" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="#FFE07D" />
-            <polygon points="27,32 46,15 46,22 35,32 46,42 46,49" fill="#FFE07D" />
-          </svg>
           <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="14" fill="#0A0D14" stroke="#C9922A" stroke-width="2" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="#FFE07D" />
-            <polygon points="27,32 46,15 46,22 35,32 46,42 46,49" fill="#FFE07D" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#FCD34D" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#FCD34D" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="#FCD34D" stroke-width="7" stroke-linecap="round" />
           </svg>
           <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="16" fill="#0A0D14" stroke="#C9922A" stroke-width="2" />
-            <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#b-grad1)" />
-            <polygon points="27,32 46,15 46,22 35,32 46,42 46,49" fill="url(#b-grad1)" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
           </svg>
         </div>
       </div>
@@ -293,23 +296,25 @@
       <!-- VARIANT C: Pure Frameless Monogram (For Minimalist Placements) -->
       <div class="card">
         <div class="card-title">C. Pure Architectural Vector</div>
-        <div class="card-desc">No container badge; pure kinetic geometry rendered directly on the background.</div>
+        <div class="card-desc">No container badge; pure merged E+D geometry rendered directly on background.</div>
 
         <div class="canvas-dark">
           <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
-            <rect x="14" y="12" width="8.5" height="40" rx="4.25" fill="url(#a-pillar)" />
-            <path d="M 48 13.5 L 29.5 32 L 48 50.5" stroke="url(#a-chevron)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
           </svg>
         </div>
 
         <div class="canvas-light">
           <div style="display:flex; align-items:center; gap:12px;">
             <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
-              <rect x="14" y="12" width="8.5" height="40" rx="4.25" fill="url(#a-pillar)" />
-              <path d="M 48 13.5 L 29.5 32 L 48 50.5" stroke="url(#a-chevron)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+              <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#a-spine)" />
+              <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#a-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 18 32 L 35.5 32" stroke="url(#a-mid)" stroke-width="6.5" stroke-linecap="round" />
             </svg>
             <div>
-              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">KINETIC<span style="color:#C9922A;">.</span></div>
+              <div style="font-size:18px; font-weight:800; color:#0F131D; letter-spacing:-0.5px; line-height:1;">MEDIA-TARDS<span style="color:#C9922A;">.</span></div>
               <div style="font-size:9px; font-family:'JetBrains Mono',monospace; color:#64748B; letter-spacing:1.5px; text-transform:uppercase; margin-top:3px;">Digital Growth Studio</div>
             </div>
           </div>
@@ -319,13 +324,15 @@
           <span class="label">Favicon:</span>
           <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="16" fill="#C9922A" />
-            <rect x="16" y="14" width="8" height="36" rx="4" fill="#080A0F" />
-            <path d="M 47 15 L 29 32 L 47 49" stroke="#080A0F" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#080A0F" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#080A0F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="#080A0F" stroke-width="6.5" stroke-linecap="round" />
           </svg>
           <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
             <rect width="64" height="64" rx="16" fill="#C9922A" />
-            <rect x="16" y="14" width="8" height="36" rx="4" fill="#080A0F" />
-            <path d="M 47 15 L 29 32 L 47 49" stroke="#080A0F" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="#080A0F" />
+            <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="#080A0F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 18 32 L 35.5 32" stroke="#080A0F" stroke-width="6.5" stroke-linecap="round" />
           </svg>
         </div>
       </div>

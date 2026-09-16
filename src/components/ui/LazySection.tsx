@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense, useCallback } from 'react';
 
 // Custom event name for triggering immediate section load
 export const SECTION_LOAD_EVENT = 'app:load-section';
@@ -8,16 +8,65 @@ export const triggerSectionLoad = (id: string) => {
   window.dispatchEvent(new CustomEvent(SECTION_LOAD_EVENT, { detail: { id } }));
 };
 
-// Global click listener to intercept any anchor clicks (<a href="#...">) and load the target section
+/**
+ * Smoothly scrolls to a target element, dynamically computing the navbar offset.
+ * Uses a polling loop to wait until the element's position stabilises (i.e. the
+ * lazy-loaded content has fully rendered and its layout is no longer shifting).
+ */
+const smoothScrollToElement = (el: HTMLElement) => {
+  // Compute navbar height dynamically
+  const navbar = document.querySelector('header');
+  const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+  const offset = navbarHeight + 16; // 16px extra breathing room
+
+  let lastTop = -1;
+  let stableCount = 0;
+  let attempts = 0;
+  const maxAttempts = 30; // ~900ms max wait
+
+  const poll = () => {
+    attempts++;
+    const rect = el.getBoundingClientRect();
+    const currentTop = rect.top + window.scrollY;
+
+    if (Math.abs(currentTop - lastTop) < 2) {
+      stableCount++;
+    } else {
+      stableCount = 0;
+    }
+    lastTop = currentTop;
+
+    // Position is stable for 2 consecutive reads, or we've exceeded max attempts
+    if (stableCount >= 2 || attempts >= maxAttempts) {
+      const targetY = Math.max(0, currentTop - offset);
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      return;
+    }
+
+    requestAnimationFrame(poll);
+  };
+
+  requestAnimationFrame(poll);
+};
+
+// Global click listener to intercept any anchor clicks (<a href="#...">) and handle scroll
 if (typeof window !== 'undefined') {
   document.addEventListener(
     'click',
     (e: MouseEvent) => {
-      const target = (e.target as HTMLElement)?.closest('a');
-      if (target) {
-        const href = target.getAttribute('href');
+      const anchor = (e.target as HTMLElement)?.closest('a');
+      if (anchor) {
+        const href = anchor.getAttribute('href');
         if (href && href.startsWith('#') && href.length > 1) {
+          // Prevent the browser's default instant jump
+          e.preventDefault();
+
           const targetId = href.substring(1);
+
+          // Update URL hash without triggering a jump
+          history.pushState(null, '', `#${targetId}`);
+
+          // Trigger lazy-load of the target section
           triggerSectionLoad(targetId);
         }
       }
@@ -76,6 +125,16 @@ export const LazySection: React.FC<LazySectionProps> = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const pendingScrollRef = useRef<boolean>(false);
+
+  // When the section mounts (lazy content loaded), perform pending scroll
+  const handleMount = useCallback(() => {
+    setIsMounted(true);
+    if (pendingScrollRef.current && containerRef.current) {
+      pendingScrollRef.current = false;
+      smoothScrollToElement(containerRef.current);
+    }
+  }, []);
 
   useEffect(() => {
     // Check if current URL hash matches this section's id
@@ -88,14 +147,13 @@ export const LazySection: React.FC<LazySectionProps> = ({
       const customEvent = e as CustomEvent<{ id: string }>;
       if (id && customEvent.detail?.id === id) {
         setIsVisible(true);
-        // Ensure smooth scroll to section after short tick for mounting
-        setTimeout(() => {
-          if (containerRef.current) {
-            const yOffset = -70; // Offset for fixed navbar
-            const y = containerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
-        }, 60);
+
+        // If already mounted, scroll immediately; otherwise, defer
+        if (isMounted && containerRef.current) {
+          smoothScrollToElement(containerRef.current);
+        } else {
+          pendingScrollRef.current = true;
+        }
       }
     };
 
@@ -112,7 +170,7 @@ export const LazySection: React.FC<LazySectionProps> = ({
       window.removeEventListener(SECTION_LOAD_EVENT, handleCustomLoad);
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [id]);
+  }, [id, isMounted]);
 
   useEffect(() => {
     if (isVisible) return; // Already triggered
@@ -145,8 +203,8 @@ export const LazySection: React.FC<LazySectionProps> = ({
   return (
     <div
       ref={containerRef}
-      id={!isMounted ? id : undefined}
-      className={`scroll-mt-20 ${!isMounted ? minHeight : ''}`}
+      id={id}
+      className="scroll-mt-24"
     >
       {isVisible ? (
         <Suspense
@@ -158,7 +216,7 @@ export const LazySection: React.FC<LazySectionProps> = ({
             />
           }
         >
-          <MountNotifier onMount={() => setIsMounted(true)}>
+          <MountNotifier onMount={handleMount}>
             {children}
           </MountNotifier>
         </Suspense>

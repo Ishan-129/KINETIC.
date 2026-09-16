@@ -1,41 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none">
   <defs>
     <linearGradient id="lw-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#182030"/>
       <stop offset="100%" stop-color="#080A0F"/>
     </linearGradient>
     <linearGradient id="lw-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.6"/>
+      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.65"/>
     </linearGradient>
-    <linearGradient id="lw-pillar" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
+    <linearGradient id="lw-spine" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFF0B3"/>
       <stop offset="30%" stop-color="#FCD34D"/>
       <stop offset="70%" stop-color="#E8B84B"/>
       <stop offset="100%" stop-color="#C9922A"/>
     </linearGradient>
-    <linearGradient id="lw-chevron" x1="28" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+    <linearGradient id="lw-loop" x1="18" y1="14" x2="52" y2="50" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFF5CC"/>
       <stop offset="25%" stop-color="#FCD34D"/>
       <stop offset="65%" stop-color="#E8B84B"/>
       <stop offset="100%" stop-color="#9B6E1A"/>
     </linearGradient>
+    <linearGradient id="lw-mid" x1="18" y1="32" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF5CC"/>
+      <stop offset="50%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#E8B84B"/>
+    </linearGradient>
+    <filter id="lw-glow" x="4" y="4" width="56" height="56" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" floodColor="#C9922A" floodOpacity="0.4"/>
+    </filter>
   </defs>
 
   <!-- Mark Badge -->
   <g transform="translate(0, 0)">
     <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#lw-bg)" stroke="url(#lw-border)" stroke-width="1.5"/>
-    <circle cx="32" cy="32" r="20" fill="#C9922A" opacity="0.12"/>
-    <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#lw-pillar)"/>
-    <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#lw-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="32" cy="32" r="18" fill="#C9922A" opacity="0.12"/>
+    <g filter="url(#lw-glow)">
+      <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#lw-spine)"/>
+      <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#lw-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 18 32 L 35.5 32" stroke="url(#lw-mid)" stroke-width="6.5" stroke-linecap="round"/>
+    </g>
   </g>
 
   <!-- Wordmark -->
-  <text x="76" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">
-    KINETIC<tspan fill="#E8B84B">.</tspan>
+  <text x="76" y="34" font-family="'Plus Jakarta Sans', Inter, system-ui, sans-serif" font-weight="800" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">
+    MEDIA-TARDS<tspan fill="#E8B84B">.</tspan>
   </text>
-  <text x="76" y="48" font-family="'JetBrains Mono', monospace, Courier" font-weight="600" font-size="9.5" fill="#93C5FD" letter-spacing="2">
+  <text x="76" y="48" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="9" fill="#93C5FD" letter-spacing="2">
     DIGITAL GROWTH STUDIO
   </text>
 </svg>

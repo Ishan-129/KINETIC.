@@ -1,33 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="kin-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#141925"/>
+    <linearGradient id="ed-fav-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#182030"/>
       <stop offset="100%" stop-color="#080A0F"/>
     </linearGradient>
-    <linearGradient id="kin-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.6"/>
+    <linearGradient id="ed-fav-border" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#C9922A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#9B6E1A" stop-opacity="0.65"/>
     </linearGradient>
-    <linearGradient id="kin-pillar" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ed-fav-spine" x1="14" y1="12" x2="22" y2="52" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFF0B3"/>
       <stop offset="30%" stop-color="#FCD34D"/>
       <stop offset="70%" stop-color="#E8B84B"/>
       <stop offset="100%" stop-color="#C9922A"/>
     </linearGradient>
-    <linearGradient id="kin-chevron" x1="28" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ed-fav-loop" x1="18" y1="14" x2="52" y2="50" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFF5CC"/>
       <stop offset="25%" stop-color="#FCD34D"/>
       <stop offset="65%" stop-color="#E8B84B"/>
       <stop offset="100%" stop-color="#9B6E1A"/>
     </linearGradient>
+    <linearGradient id="ed-fav-mid" x1="18" y1="32" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF5CC"/>
+      <stop offset="50%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#E8B84B"/>
+    </linearGradient>
+    <filter id="ed-fav-glow" x="4" y="4" width="56" height="56" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" floodColor="#C9922A" floodOpacity="0.4"/>
+    </filter>
   </defs>
-  <!-- Squircle Badge -->
-  <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#kin-bg)" stroke="url(#kin-border)" stroke-width="1.5"/>
+
+  <!-- Squircle Badge Container -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="url(#ed-fav-bg)" stroke="url(#ed-fav-border)" stroke-width="1.5"/>
+
   <!-- Ambient Center Core -->
-  <circle cx="32" cy="32" r="20" fill="#C9922A" opacity="0.08"/>
-  <!-- Anchor Pillar -->
-  <rect x="14" y="13" width="8" height="38" rx="4" fill="url(#kin-pillar)"/>
-  <!-- Kinetic Chevron -->
-  <path d="M 48 14 L 29.5 32 L 48 50" stroke="url(#kin-chevron)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="18" fill="#C9922A" opacity="0.12"/>
+
+  <!-- Merged E+D Monogram -->
+  <g filter="url(#ed-fav-glow)">
+    <!-- Shared Vertical Backbone -->
+    <rect x="14" y="13.5" width="7.5" height="37" rx="3.75" fill="url(#ed-fav-spine)"/>
+    <!-- D Outer Loop & E Top/Bottom Prongs -->
+    <path d="M 18 17 L 33 17 C 44 17 49.5 23 49.5 32 C 49.5 41 44 47 33 47 L 18 47" stroke="url(#ed-fav-loop)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- E Middle Arm -->
+    <path d="M 18 32 L 35.5 32" stroke="url(#ed-fav-mid)" stroke-width="6.5" stroke-linecap="round"/>
+  </g>
 </svg>

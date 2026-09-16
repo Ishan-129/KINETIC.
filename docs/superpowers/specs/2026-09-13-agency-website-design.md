@@ -9,7 +9,7 @@
 ## 1. Executive Summary & Brand Positioning
 
 ### 1.1 Brand Identity
-* **Agency Name:** **KINETIC** (Sub-mark: *Digital Growth Studio*)
+* **Agency Name:** **MEDIA-TARDS** (Sub-mark: *Digital Growth Studio*)
 * **Tagline:** *Turning local businesses into the obvious choice in their market.*
 * **Positioning:** A modern digital growth partner for businesses that want to build a commanding online presence and turn attention into paying customers.
 * **The Founders:** 3 collegiate builders combining conversion strategy, UI/UX design, and cutting-edge frontend engineering. Direct founder access, rapid 2–3 week launch cycles, zero agency bloat.

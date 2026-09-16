@@ -64,7 +64,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   if (asLink && href) {
     return (
-      <a href={href} target={target} rel={rel} className={combinedClass}>
+      <a href={href} target={target} rel={rel} className={combinedClass} onClick={props.onClick as any}>
         {content}
       </a>
     );

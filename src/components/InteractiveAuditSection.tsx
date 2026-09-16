@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, MessageSquare, Mail, Clock } from 'lucide-react';
-import { SectionHeading } from './ui/SectionHeading';
-import { Button } from './ui/Button';
+import { ArrowUpRight, CheckCircle2, MessageSquare, Mail, Clock, AlertCircle, Loader2 } from 'lucide-react';
+import { CONTACT } from '../config/contact';
+import { MagneticButton } from './ui/MagneticButton';
+
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
 
 export const InteractiveAuditSection: React.FC = () => {
   const [industry, setIndustry] = useState('Medical & Cosmetic Clinic');
-  const [bottleneck, setBottleneck] = useState('Our website looks dated and embarrassing');
+  const [bottleneck, setBottleneck] = useState('Our website looks dated and leaks credibility');
   const [businessName, setBusinessName] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [contactInfo, setContactInfo] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const industries = [
     'Medical & Cosmetic Clinic',
     'Boutique Fitness / Gym',
     'Architecture & High-End Craft',
-    'Artisan Café & Hospitality',
-    'Luxury Home Services',
+    'Artisan Hospitality / Café',
+    'Luxury Home & Real Estate',
     'Other Local Business',
   ];
 
@@ -28,94 +32,176 @@ export const InteractiveAuditSection: React.FC = () => {
     'Starting from scratch with a brand new presence',
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!businessName || !contactInfo) return;
-    setSubmitted(true);
+
+    if (!businessName.trim() || !contactInfo.trim()) return;
+    if (loading || submitted) return;
+
+    if (!FORMSPREE_ENDPOINT) {
+      setError(
+        'The brief form is ready for deployment. Please contact us directly at founders@mediatards.agency or via WhatsApp below — our 3 founders respond within 24 hours.'
+      );
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          business_name: businessName.trim(),
+          contact_info: contactInfo.trim(),
+          website_url: websiteUrl.trim() || 'Not provided',
+          industry,
+          primary_challenge: bottleneck,
+          _subject: `New Project Brief — ${businessName.trim()}`,
+          _replyto: contactInfo.trim(),
+          source: 'mediatards.agency — Kinetic Studio Form',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const msg = data?.errors?.[0]?.message || data?.error || null;
+        setError(
+          msg
+            ? `Submission failed: ${msg}. Please try again or email us directly.`
+            : 'Something went wrong submitting your request. Please email us at founders@mediatards.agency.'
+        );
+      }
+    } catch {
+      setError(
+        'Could not reach server. Please check your connection or contact founders@mediatards.agency directly.'
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
+  const isWhatsappReady = CONTACT.isWhatsappConfigured();
+
   return (
-    <section id="audit" className="py-24 sm:py-32 bg-ivory-50 border-t border-sand-300 relative overflow-hidden">
-      {/* Warm radial glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 radial-glow-coral opacity-50 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-24 sm:py-36 bg-studio-bg border-t border-studio-ink relative" id="audit">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        {/* Dramatic Oversized Studio Header */}
+        <div className="mb-14 sm:mb-20 pb-8 border-b border-studio-ink flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-accent-acid animate-pulse" />
+              <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-studio-ink/70 uppercase font-bold">
+                INITIATE // START A PROJECT
+              </span>
+            </div>
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-studio-ink tracking-tight leading-[0.92] uppercase">
+              Got Something<br />
+              To Build?<br />
+              <span className="text-studio-gold">Let's Talk.</span>
+            </h2>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading
-          eyebrow="No-Obligation Digital Audit"
-          title="Have a Business That Deserves a Better Digital Presence?"
-          subtitle="Stop losing high-value neighborhood customers to competitors. Request a personalized 10-minute video audit of your current digital presence—completely free, zero pressure."
-        />
+          {/* Minimal Studio Metadata Card */}
+          <div className="bg-studio-ink text-[#F5F2EB] p-6 border-2 border-studio-ink font-mono text-xs space-y-3 min-w-[280px] shadow-studio-md">
+            <div>
+              <span className="text-accent-acid uppercase tracking-widest font-bold block text-[10px]">
+                PROJECT STATUS
+              </span>
+              <span className="text-white font-bold text-sm">● OPEN FOR Q3 SPRINT</span>
+            </div>
+            <div className="pt-2 border-t border-white/15">
+              <span className="text-studio-gold uppercase tracking-widest font-bold block text-[10px]">
+                LOCATION
+              </span>
+              <span className="text-white font-bold">MUMBAI / GLOBAL EDGE</span>
+            </div>
+            <div className="pt-2 border-t border-white/15">
+              <span className="text-accent-acid uppercase tracking-widest font-bold block text-[10px]">
+                DIRECT EMAIL
+              </span>
+              <a href="mailto:founders@mediatards.agency" className="text-white hover:text-studio-gold transition-colors font-semibold">
+                founders@mediatards.agency
+              </a>
+            </div>
+          </div>
+        </div>
 
-        <div className="max-w-4xl mx-auto mt-4">
+        {/* Brief Intake Canvas */}
+        <div className="max-w-4xl mx-auto">
           {submitted ? (
-            <div className="bg-white border border-sand-300 rounded-3xl p-8 sm:p-12 text-center shadow-warm-xl animate-scale-in">
-              <div className="w-16 h-16 rounded-full bg-accent-forest/10 border border-accent-forest/25 text-accent-forest flex items-center justify-center mx-auto mb-6">
+            /* Success State */
+            <div className="bg-[#F5F2EB] border-2 border-studio-ink p-8 sm:p-14 text-center shadow-studio-lg animate-scale-in">
+              <div className="w-16 h-16 bg-studio-ink text-accent-acid flex items-center justify-center mx-auto mb-6 shadow-studio-sm">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
-              <span className="text-xs font-mono uppercase tracking-wider text-accent-forest bg-accent-forest/8 px-3 py-1.5 rounded-full border border-accent-forest/20">
-                Audit Request Registered
+              <span className="text-xs font-mono uppercase tracking-widest text-studio-ink bg-accent-acid px-3.5 py-1.5 border border-studio-ink font-black">
+                BRIEF LOGGED
               </span>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-5 mb-3">
-                We're Reviewing {businessName}
+              <h3 className="font-display text-3xl sm:text-4xl font-black text-studio-ink mt-6 mb-3 uppercase">
+                Reviewing {businessName}
               </h3>
-              <p className="text-slate-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-6">
-                Our strategy lead (Ishan) will inspect your digital presence, analyze local search competitors
-                in your area, and record a private 10-minute Loom video breaking down 3 high-impact conversion fixes.
+              <p className="text-studio-ink/80 text-base max-w-lg mx-auto leading-relaxed mb-8 font-medium">
+                Our 3 founders (Ishan, Aryan, Kabir) will analyze your competitors and reply with a custom sprint blueprint within 24 hours.
               </p>
 
-              <div className="bg-ivory-100 border border-sand-300 p-4 rounded-xl max-w-md mx-auto text-left text-xs font-mono text-slate-500 space-y-2 mb-8">
-                <div>• Target Business: <span className="text-slate-900 font-semibold">{businessName}</span></div>
-                <div>• Industry Focus: <span className="text-slate-900 font-semibold">{industry}</span></div>
-                <div>• Primary Bottleneck: <span className="text-slate-900 font-semibold">{bottleneck}</span></div>
-                <div>• Expected Delivery: <span className="text-accent-forest font-semibold">Within 24 Hours</span></div>
+              <div className="bg-white border-2 border-studio-ink p-5 max-w-md mx-auto text-left text-xs font-mono text-studio-ink space-y-2 mb-8">
+                <div>• Business: <span className="font-bold">{businessName}</span></div>
+                <div>• Industry: <span className="font-bold">{industry}</span></div>
+                <div>• Primary Focus: <span className="font-bold">{bottleneck}</span></div>
+                <div>• Response: <span className="text-studio-gold font-bold">Within 24 Hours</span></div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button size="md" variant="secondary" onClick={() => setSubmitted(false)}>
-                  Submit Another Project
-                </Button>
-                <Button
-                  asLink
-                  href="https://wa.me/919999999999?text=Hi%20Kinetic%20team,%20I%20just%20requested%20an%20audit%20for%20my%20business."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="md"
-                  variant="glow"
-                  icon={<MessageSquare className="w-4 h-4" />}
+                <button
+                  onClick={() => { setSubmitted(false); setError(null); }}
+                  className="px-6 py-3 border-2 border-studio-ink text-studio-ink text-xs font-mono uppercase font-bold hover:bg-studio-ink hover:text-white transition-colors"
                 >
-                  Chat With Us on WhatsApp
-                </Button>
+                  Submit Another Brief
+                </button>
+                {isWhatsappReady && (
+                  <a
+                    href={CONTACT.whatsappUrl('Hi MEDIA-TARDS team, I just requested a project brief.')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-studio-ink text-[#F5F2EB] text-xs font-mono uppercase font-bold hover:bg-studio-gold hover:text-studio-ink transition-colors border-2 border-studio-ink"
+                  >
+                    <MessageSquare className="w-4 h-4 text-accent-acid" />
+                    <span>WhatsApp Direct</span>
+                  </a>
+                )}
               </div>
             </div>
           ) : (
-            <div className="bg-white border border-sand-300 rounded-3xl p-6 sm:p-10 shadow-warm-xl relative overflow-hidden">
-              {/* Gold top accent */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-gold via-accent-gold-light to-accent-coral rounded-t-3xl" />
-
-              <form onSubmit={handleSubmit} className="space-y-8 pt-2">
+            /* Active Form State */
+            <div className="bg-[#F5F2EB] border-2 border-studio-ink p-8 sm:p-12 shadow-studio-lg">
+              <form onSubmit={handleSubmit} className="space-y-10" noValidate>
                 {/* Step 1: Industry */}
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-7 h-7 rounded-full bg-accent-navy text-white border-0 text-xs font-mono flex items-center justify-center font-bold shadow-warm-sm">
-                      1
-                    </span>
-                    <label className="text-sm sm:text-base font-bold text-slate-900">
-                      What industry is your business in?
-                    </label>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  <label className="font-mono text-xs uppercase tracking-widest text-studio-ink font-bold block mb-4">
+                    01 // What type of business is this?
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {industries.map((ind) => (
                       <button
                         type="button"
                         key={ind}
                         onClick={() => setIndustry(ind)}
-                        className={`p-3 rounded-xl border text-xs font-semibold text-left transition-all duration-150 ${
+                        data-cursor="select"
+                        data-cursor-text={ind.toUpperCase()}
+                        className={`p-3.5 border-2 text-xs font-mono font-bold text-left transition-all ${
                           industry === ind
-                            ? 'bg-accent-gold/10 border-accent-gold text-slate-900 shadow-warm-sm ring-1 ring-accent-gold/30'
-                            : 'bg-ivory-100 border-sand-300 text-slate-600 hover:border-sand-400 hover:bg-ivory-200'
+                            ? 'bg-studio-ink text-[#F5F2EB] border-studio-ink shadow-studio-sm'
+                            : 'bg-white text-studio-ink border-studio-ink/30 hover:border-studio-ink'
                         }`}
                       >
                         {ind}
@@ -126,31 +212,31 @@ export const InteractiveAuditSection: React.FC = () => {
 
                 {/* Step 2: Bottleneck */}
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-7 h-7 rounded-full bg-accent-gold text-white text-xs font-mono flex items-center justify-center font-bold shadow-warm-sm">
-                      2
-                    </span>
-                    <label className="text-sm sm:text-base font-bold text-slate-900">
-                      What is your single biggest digital challenge right now?
-                    </label>
-                  </div>
-                  <div className="space-y-2">
+                  <label className="font-mono text-xs uppercase tracking-widest text-studio-ink font-bold block mb-4">
+                    02 // What needs to be built or fixed first?
+                  </label>
+                  <div className="space-y-2.5 font-mono text-xs">
                     {bottlenecks.map((btn) => (
                       <div
                         key={btn}
                         onClick={() => setBottleneck(btn)}
-                        className={`p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all duration-150 flex items-center justify-between ${
+                        role="radio"
+                        aria-checked={bottleneck === btn}
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && setBottleneck(btn)}
+                        data-cursor="select"
+                        className={`p-4 border-2 cursor-pointer font-bold transition-all flex items-center justify-between ${
                           bottleneck === btn
-                            ? 'bg-accent-gold/10 border-accent-gold text-slate-900 shadow-warm-sm ring-1 ring-accent-gold/30'
-                            : 'bg-ivory-100 border-sand-300 text-slate-600 hover:border-sand-400 hover:bg-ivory-200'
+                            ? 'bg-studio-ink text-[#F5F2EB] border-studio-ink shadow-studio-sm'
+                            : 'bg-white text-studio-ink border-studio-ink/30 hover:border-studio-ink'
                         }`}
                       >
                         <span>{btn}</span>
                         <div
-                          className={`w-4 h-4 rounded-full border-2 flex-shrink-0 transition-all ${
+                          className={`w-3.5 h-3.5 border-2 flex-shrink-0 ${
                             bottleneck === btn
-                              ? 'border-accent-gold bg-accent-gold'
-                              : 'border-sand-400 bg-transparent'
+                              ? 'bg-accent-acid border-white'
+                              : 'bg-transparent border-studio-ink/40'
                           }`}
                         />
                       </div>
@@ -160,98 +246,118 @@ export const InteractiveAuditSection: React.FC = () => {
 
                 {/* Step 3: Contact */}
                 <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-7 h-7 rounded-full bg-accent-forest text-white text-xs font-mono flex items-center justify-center font-bold shadow-warm-sm">
-                      3
-                    </span>
-                    <label className="text-sm sm:text-base font-bold text-slate-900">
-                      Where should we send your custom teardown?
-                    </label>
-                  </div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-studio-ink font-bold block mb-4">
+                    03 // Where should we send your sprint plan?
+                  </label>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-mono text-slate-500 block mb-1.5">
-                        Business Name <span className="text-accent-coral">*</span>
+                      <label htmlFor="audit-business-name" className="text-xs font-mono text-studio-ink/70 font-bold block mb-1.5">
+                        Business Name <span className="text-studio-gold">*</span>
                       </label>
                       <input
+                        id="audit-business-name"
                         type="text"
                         required
                         value={businessName}
                         onChange={(e) => setBusinessName(e.target.value)}
-                        placeholder="e.g. Apex Physical Therapy"
-                        className="w-full bg-ivory-100 border border-sand-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold/30 placeholder:text-slate-400 transition-colors"
+                        placeholder="e.g. Aura Dental Clinic"
+                        disabled={loading}
+                        className="w-full bg-white border-2 border-studio-ink/40 px-4 py-3 text-sm text-studio-ink focus:outline-none focus:border-studio-ink placeholder:text-studio-ink/40 transition-colors font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-mono text-slate-500 block mb-1.5">
-                        Current Website URL (optional)
+                      <label htmlFor="audit-website-url" className="text-xs font-mono text-studio-ink/70 font-bold block mb-1.5">
+                        Current Website or Instagram (optional)
                       </label>
                       <input
+                        id="audit-website-url"
                         type="text"
                         value={websiteUrl}
                         onChange={(e) => setWebsiteUrl(e.target.value)}
-                        placeholder="e.g. www.apexphysicaltherapy.com"
-                        className="w-full bg-ivory-100 border border-sand-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold/30 placeholder:text-slate-400 transition-colors"
+                        placeholder="e.g. auraclinic.co or @auraclinic"
+                        disabled={loading}
+                        className="w-full bg-white border-2 border-studio-ink/40 px-4 py-3 text-sm text-studio-ink focus:outline-none focus:border-studio-ink placeholder:text-studio-ink/40 transition-colors font-mono"
                       />
                     </div>
                   </div>
 
                   <div className="mt-4">
-                    <label className="text-xs font-mono text-slate-500 block mb-1.5">
-                      Your Name & Email or WhatsApp Number <span className="text-accent-coral">*</span>
+                    <label htmlFor="audit-contact" className="text-xs font-mono text-studio-ink/70 font-bold block mb-1.5">
+                      Your Name &amp; Email or WhatsApp Number <span className="text-studio-gold">*</span>
                     </label>
                     <input
+                      id="audit-contact"
                       type="text"
                       required
                       value={contactInfo}
                       onChange={(e) => setContactInfo(e.target.value)}
-                      placeholder="e.g. Dr. John Miller — john@apextherapy.com or +1 555-0123"
-                      className="w-full bg-ivory-100 border border-sand-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold/30 placeholder:text-slate-400 transition-colors"
+                      placeholder="e.g. Dr. Aryan — aryan@clinic.com or +91 98765 43210"
+                      disabled={loading}
+                      className="w-full bg-white border-2 border-studio-ink/40 px-4 py-3 text-sm text-studio-ink focus:outline-none focus:border-studio-ink placeholder:text-studio-ink/40 transition-colors font-mono"
                     />
                   </div>
                 </div>
 
-                {/* Submit */}
-                <div className="pt-4 border-t border-sand-300 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-                    <Clock className="w-4 h-4 text-accent-gold shrink-0" />
-                    <span>Takes 24 hours to deliver • 100% Free • No sales pressure</span>
+                {/* Error Banner */}
+                {error && (
+                  <div
+                    role="alert"
+                    className="flex items-start gap-3 p-4 bg-amber-50 border-2 border-studio-ink text-studio-ink text-xs font-mono"
+                  >
+                    <AlertCircle className="w-4 h-4 text-studio-gold shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                {/* Submit Row with Magnetic CTA */}
+                <div className="pt-6 border-t border-studio-ink/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 text-xs font-mono text-studio-ink/70">
+                    <Clock className="w-4 h-4 text-studio-gold shrink-0" />
+                    <span>24-hour founder response • Direct access</span>
                   </div>
 
-                  <Button
+                  <MagneticButton
                     type="submit"
-                    variant="glow"
-                    size="lg"
-                    icon={<ArrowRight className="w-4 h-4" />}
-                    className="w-full sm:w-auto"
+                    disabled={loading}
+                    cursorText="SUBMIT BRIEF ↗"
+                    className="w-full sm:w-auto px-8 py-4 bg-studio-ink text-[#F5F2EB] font-mono font-black text-xs uppercase tracking-widest hover:bg-studio-gold hover:text-studio-ink transition-colors duration-200 border-2 border-studio-ink shadow-studio-md disabled:opacity-60"
                   >
-                    Send My Free Audit Video
-                  </Button>
+                    <div className="flex items-center gap-3">
+                      <span>{loading ? 'Submitting Brief...' : "Let's Talk"}</span>
+                      {loading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ArrowUpRight className="w-4 h-4 text-accent-acid" />
+                      )}
+                    </div>
+                  </MagneticButton>
                 </div>
               </form>
 
-              {/* Direct Contact Options */}
-              <div className="mt-8 pt-6 border-t border-sand-300 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
-                <span>Prefer to chat directly?</span>
-                <div className="flex items-center gap-4">
+              {/* Direct channels footer */}
+              <div className="mt-10 pt-6 border-t border-studio-ink/20 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-studio-ink/70">
+                <span className="font-bold">Direct studio channels:</span>
+                <div className="flex items-center gap-6">
                   <a
-                    href="mailto:founders@kineticstudio.agency"
-                    className="flex items-center gap-1.5 text-slate-600 hover:text-accent-gold transition-colors"
+                    href="mailto:founders@mediatards.agency"
+                    className="flex items-center gap-1.5 text-studio-ink hover:text-studio-gold transition-colors font-semibold"
                   >
-                    <Mail className="w-3.5 h-3.5 text-accent-gold" />
-                    <span>founders@kineticstudio.agency</span>
+                    <Mail className="w-3.5 h-3.5 text-studio-gold" />
+                    <span>founders@mediatards.agency</span>
                   </a>
-                  <a
-                    href="https://wa.me/919999999999"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-accent-forest hover:text-accent-forest/80 transition-colors"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>WhatsApp Direct</span>
-                  </a>
+                  {isWhatsappReady && (
+                    <a
+                      href={CONTACT.whatsappUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-studio-ink hover:text-studio-gold transition-colors font-semibold"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5 text-accent-acid" />
+                      <span>WhatsApp Direct</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -261,3 +367,5 @@ export const InteractiveAuditSection: React.FC = () => {
     </section>
   );
 };
+
+export default InteractiveAuditSection;

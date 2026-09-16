@@ -1,0 +1,23 @@
+{
+  "name": "MEDIA-TARDS",
+  "short_name": "MEDIA-TARDS",
+  "description": "We turn overlooked local businesses into the obvious choice in their market. High-performance custom websites, social media management, and lead generation.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FDFCF9",
+  "theme_color": "#FDFCF9",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

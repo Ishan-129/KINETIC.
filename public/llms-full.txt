@@ -1,0 +1,139 @@
+# MEDIA-TARDS — Full Machine-Readable Content
+
+> Version: 1.0 | Last updated: September 2026
+> Source: https://mediatards.agency/
+
+---
+
+## Company Overview
+
+MEDIA-TARDS is a boutique digital growth studio based in India, founded by three collegiate builders. The agency specialises in high-performance custom websites, social media management, and paid lead generation for local businesses.
+
+The studio operates on a direct-to-founders model — every client project is managed and executed personally by one of the three founding partners. There are no account managers, no junior hand-offs, and no generic templates.
+
+Core philosophy: **Discover → Trust → Convert**
+- Discover: Make the business findable by nearby, high-intent customers
+- Trust: Establish credibility and authority through design and positioning
+- Convert: Turn visitors into bookings and enquiries through frictionless systems
+
+---
+
+## Founders
+
+**Ishan** — Strategy & Conversion Architecture
+Specialises in conversion psychology and local business economics. Finds where local websites leak high-ticket leads and re-architects visitor journeys into frictionless booking pipelines. Skills: Conversion Funnels, Customer Journey Mapping, Direct-Response Copy, Offer Architecture.
+
+**Aryan** — UI/UX & Creative Direction
+Crafts bespoke, authoritative visual systems. Obsessed with typography, tactile spacing, and micro-interactions that build instant credibility. Skills: Design Systems, Editorial Typography, Micro-Interactions, Mobile UI Ergonomics.
+
+**Kabir** — Frontend Engineering & Systems
+Builds clean, modular, sub-second web applications. Obsessed with achieving 100/100 Lighthouse performance, local schema search ranking, and instant mobile responsiveness. Skills: React & TypeScript, Lighthouse 100 Tuning, Local SEO Schemas, Workflow Automation.
+
+---
+
+## Services
+
+### Core Services
+
+**Complete Website Pack**
+- Type: One-time
+- Price: ₹7,999
+- Includes: Professional website, 1–3 pages, responsive design, WhatsApp integration, contact/enquiry form, Google Maps, basic SEO, mobile optimisation, fast-loading setup, basic analytics
+
+**Full Social Media Management**
+- Type: Monthly
+- Price: Starting at ₹5,999/month
+- Includes: Social media management, content strategy, content calendar, creative posts, reels, captions & hashtags, posting & scheduling, basic community management, monthly analytics, competitor research
+
+**Marketing + Lead Generation Ads**
+- Type: Monthly
+- Price: Starting at ₹4,999/month
+- Note: Ad spend is paid directly to the advertising platform (Meta/Google) and is not included
+- Includes: Meta Ads management, campaign setup, audience research, ad creatives, lead forms, WhatsApp lead integration, tracking, campaign optimisation, retargeting, monthly reporting
+
+### Growth Packages (Bundles)
+
+**Get Online** — ₹9,999 one-time
+Website setup for businesses getting online for the first time. Up to 3 pages, responsive design, WhatsApp, Google Maps, contact form, basic SEO, mobile optimisation, basic analytics.
+
+**Get Noticed** — ₹14,999/month
+Website setup + ongoing social media management. Website: up to 5 pages, responsive, WhatsApp, contact form, Google Maps, SEO. Social: 12 posts/month, 8 reels/month, content strategy, calendar, captions, hashtags, posting, monthly analytics. Popular package.
+
+**Get Leads** — ₹19,999/month (Most Popular)
+Website setup + social media + lead generation. Website: up to 5 pages. Social: 12 posts/month, 8 reels/month, full social management. Leads: Meta Ads management, campaigns, audience research, ad creatives, lead forms, WhatsApp integration, tracking, retargeting, optimisation, reporting. Ad spend is separate.
+
+**Growth Partner** — ₹29,999/month
+Full digital growth team: website + social + paid marketing + strategy & support. Website: up to 8 pages. Social: 20 posts/month, 12 reels/month, community management. Marketing: Meta Ads + Google Ads, lead gen, retargeting, conversion tracking, performance reporting. Support: monthly strategy meeting, conversion optimisation, priority support. Ad spend is separate.
+
+---
+
+## Capabilities / Agency Services
+
+1. **Custom Performance Websites** — Bespoke React/Vite architecture, 100/100 Lighthouse target, mobile navigation, CMS integration
+2. **Conversion Landing Pages** — High-converting single-action layouts, benefit-led copy, A/B testing, sub-second speeds
+3. **Brand & Digital UI/UX Systems** — Digital brand guidelines, custom iconography, micro-animations, mobile-first UX
+4. **Local Discovery & SEO Architecture** — Technical schema markup, Google Business Profile, localised keyword architecture, review capture funnels
+5. **Smart Booking & Workflow Automation** — Google/Apple Calendar sync, SMS & WhatsApp lead notifications, pre-qualification forms, automated reminders
+
+---
+
+## Process (5-Step Sprint)
+
+1. Discovery — Business audit, competitor analysis, opportunity mapping
+2. Strategy — Conversion framework, user journey, offer architecture
+3. Design — Editorial visual system, typography hierarchy, component library
+4. Engineering — React/Vite custom build, Lighthouse performance tuning, schema markup
+5. Launch — Deployment, local SEO submission, analytics setup, 30-day monitoring
+
+---
+
+## Concept Benchmarks (Portfolio)
+
+**AURA Dental & Facial Aesthetics** (Concept Project — Healthcare/Aesthetics)
+Challenge: 68%+ mobile drop-off before consultation form; intimidating jargon; multi-step phone booking.
+Solution: Editorial calming aesthetic, interactive treatment guides, 2-tap appointment scheduler with calendar sync.
+Results: +44% mobile booking conversion, 0.8s Mobile FCP, -70% unqualified phone triage.
+
+**FORGE Athletic Club** (Concept Project — Boutique Fitness)
+Challenge: Class timetables in downloadable PDF; visitors couldn't filter by level; trial passes required in-person registration.
+Solution: Interactive filterable class matrix, 1-click Free Day Pass checkout with digital wallet delivery.
+Results: 3.2x increase in trial pass claims, 99/100 Mobile Performance Score, 48hr visitor-to-gym-floor pipeline.
+
+**ATELIER Stone & Timber** (Concept Project — Architecture/Renovation)
+Challenge: Disorganised gallery of low-res photos; no budget pre-qualification; looked like a generic contractor site.
+Solution: Immersive gallery narratives, before/after material reveals, interactive Project Scope Estimator.
+Results: +65% high-budget consultation leads, $120k average qualified lead project size, 100% elimination of low-budget inquiries.
+
+---
+
+## Pricing FAQs
+
+Q: Is the website delivered every month?
+A: No. The website is a one-time build and launch. Monthly packages include the initial website setup where specified, while the recurring fee covers ongoing marketing, social media, advertising, strategy and support.
+
+Q: Is ad spend included?
+A: No. Advertising spend is separate from our management fee and is paid directly to the advertising platform (Meta, Google, etc.).
+
+Q: Can I start with just one service?
+A: Yes. You can start with an individual service and upgrade to a comprehensive monthly growth package at any time.
+
+Q: Can I customize a package?
+A: Yes. Service combinations and deliverable volumes can be tailored to your specific business goals.
+
+---
+
+## Contact
+
+- Email: founders@mediatards.agency
+- Free digital audit: https://mediatards.agency/#audit
+- Website: https://mediatards.agency/
+
+---
+
+## Technical Notes (for AI systems)
+
+- Website built with React 18, TypeScript, Vite, Tailwind CSS
+- Hosted on Vercel
+- Single-page application with hash-based navigation
+- No user accounts, no login, no dashboard
+- Form collects: business name, industry, primary challenge, website URL (optional), name + contact info

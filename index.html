@@ -1,34 +1,203 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth scroll-pt-20">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- ═══════════════════════════════════════════
+         Favicon & App Icons
+    ═══════════════════════════════════════════ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- ═══════════════════════════════════════════
+         Viewport & Theme
+    ═══════════════════════════════════════════ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#FDFCF9" />
 
-    <title>KINETIC — Modern Digital Growth Studio | Discover → Trust → Convert</title>
-    <meta name="description" content="We turn overlooked local businesses into the obvious choice in their market. High-performance custom websites, conversion engineering, and local discovery." />
-    <meta name="keywords" content="digital agency, web design, conversion rate optimization, local SEO, high performance websites, boutique studio" />
+    <!-- ═══════════════════════════════════════════
+         Primary SEO Metadata
+    ═══════════════════════════════════════════ -->
+    <title>MEDIA-TARDS — Creative Digital Agency | Websites, Social Media &amp; Lead Generation</title>
+    <meta name="description" content="We turn overlooked local businesses into the obvious choice in their market. Custom websites, social media management, and lead generation ads — handcrafted by 3 founding partners." />
+    <meta name="keywords" content="digital agency, web design, social media management, lead generation, local business marketing, custom websites, MEDIA-TARDS" />
+    <meta name="author" content="MEDIA-TARDS" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <!-- Open Graph / Social Sharing -->
+    <!-- ═══════════════════════════════════════════
+         Canonical URL
+    ═══════════════════════════════════════════ -->
+    <link rel="canonical" href="https://mediatards.agency/" />
+
+    <!-- ═══════════════════════════════════════════
+         Open Graph / Social Sharing
+    ═══════════════════════════════════════════ -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KINETIC Digital Studio" />
-    <meta property="og:title" content="KINETIC — Modern Digital Growth Studio" />
-    <meta property="og:description" content="We turn overlooked local businesses into the obvious choice in their market. High-performance custom websites, conversion engineering, and local discovery." />
-    <meta property="og:image" content="/apple-touch-icon.png" />
+    <meta property="og:site_name" content="MEDIA-TARDS" />
+    <meta property="og:title" content="MEDIA-TARDS — Creative Digital Agency" />
+    <meta property="og:description" content="We turn overlooked local businesses into the obvious choice in their market. Custom websites, social media management, and lead generation ads — handcrafted by 3 founding partners." />
+    <meta property="og:url" content="https://mediatards.agency/" />
+    <meta property="og:image" content="https://mediatards.agency/og-image.jpg" />
+    <meta property="og:image:alt" content="MEDIA-TARDS — Creative Digital Agency. Discover → Trust → Convert." />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
 
-    <!-- Twitter Card -->
+    <!-- ═══════════════════════════════════════════
+         Twitter / X Card
+    ═══════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KINETIC — Modern Digital Growth Studio" />
-    <meta name="twitter:description" content="High-performance custom websites, conversion engineering, and local discovery for top local businesses." />
-    <meta name="twitter:image" content="/apple-touch-icon.png" />
+    <meta name="twitter:title" content="MEDIA-TARDS — Creative Digital Agency" />
+    <meta name="twitter:description" content="High-performance custom websites, social media management, and lead generation for ambitious local businesses." />
+    <meta name="twitter:image" content="https://mediatards.agency/og-image.jpg" />
+    <meta name="twitter:image:alt" content="MEDIA-TARDS — Creative Digital Agency. Discover → Trust → Convert." />
 
-    <!-- Google Fonts -->
+    <!-- ═══════════════════════════════════════════
+         JSON-LD Structured Data
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://mediatards.agency/#website",
+          "name": "MEDIA-TARDS",
+          "url": "https://mediatards.agency/",
+          "description": "Creative digital growth studio specialising in custom websites, social media management, and lead generation for local businesses.",
+          "inLanguage": "en",
+          "publisher": {
+            "@id": "https://mediatards.agency/#organization"
+          }
+        },
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://mediatards.agency/#organization",
+          "name": "MEDIA-TARDS",
+          "alternateName": "MEDIA-TARDS Digital Growth Studio",
+          "url": "https://mediatards.agency/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://mediatards.agency/favicon.svg",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://mediatards.agency/og-image.jpg",
+          "description": "We turn overlooked local businesses into the obvious choice in their market. High-performance custom websites, social media management, and lead generation ads — handcrafted directly by 3 founding partners.",
+          "slogan": "Discover → Trust → Convert",
+          "foundingDate": "2026",
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": 3
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "founders@mediatards.agency",
+            "contactType": "customer support",
+            "availableLanguage": ["English"]
+          },
+          "employee": [
+            {
+              "@type": "Person",
+              "name": "Ishan",
+              "jobTitle": "Strategy & Conversion Architecture"
+            },
+            {
+              "@type": "Person",
+              "name": "Aryan",
+              "jobTitle": "UI/UX & Creative Direction"
+            },
+            {
+              "@type": "Person",
+              "name": "Kabir",
+              "jobTitle": "Frontend Engineering & Systems"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Digital Growth Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Complete Website Pack",
+                  "description": "A professionally designed website built once, launched for your business, and ready to turn visitors into enquiries. Includes responsive design, WhatsApp integration, contact form, Google Maps, basic SEO, and mobile optimisation.",
+                  "provider": { "@id": "https://mediatards.agency/#organization" }
+                },
+                "price": "7999",
+                "priceCurrency": "INR",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "7999",
+                  "priceCurrency": "INR",
+                  "description": "One-time payment"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Full Social Media Management",
+                  "description": "We handle your content, posting, and social presence so your business stays active, consistent, and relevant. Includes content strategy, content calendar, creative posts, reels, captions, hashtags, scheduling, community management, monthly analytics, and competitor research.",
+                  "provider": { "@id": "https://mediatards.agency/#organization" }
+                },
+                "price": "5999",
+                "priceCurrency": "INR",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "5999",
+                  "priceCurrency": "INR",
+                  "description": "Starting at ₹5,999 per month"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Marketing + Lead Generation Ads",
+                  "description": "Turn your advertising budget into qualified enquiries through targeted campaigns across Meta and Google. Includes campaign setup, audience research, ad creatives, lead forms, WhatsApp integration, retargeting, and monthly reporting.",
+                  "provider": { "@id": "https://mediatards.agency/#organization" }
+                },
+                "price": "4999",
+                "priceCurrency": "INR",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "4999",
+                  "priceCurrency": "INR",
+                  "description": "Starting at ₹4,999 per month (ad spend is separate)"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://mediatards.agency/#webpage",
+          "url": "https://mediatards.agency/",
+          "name": "MEDIA-TARDS — Creative Digital Agency | Websites, Social Media & Lead Generation",
+          "isPartOf": { "@id": "https://mediatards.agency/#website" },
+          "about": { "@id": "https://mediatards.agency/#organization" },
+          "description": "We turn overlooked local businesses into the obvious choice in their market. Custom websites, social media management, and lead generation ads — handcrafted by 3 founding partners.",
+          "inLanguage": "en",
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": ["https://mediatards.agency/"]
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+         Google Fonts
+    ═══════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   </head>
   <body class="bg-ivory-50 text-slate-900 font-sans antialiased selection:bg-accent-gold/20 selection:text-accent-gold-dark min-h-screen">
     <div id="root"></div>

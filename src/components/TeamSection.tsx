@@ -1,134 +1,148 @@
 import React from 'react';
-import { Target, Palette, Code2, Sparkles } from 'lucide-react';
-import { SectionHeading } from './ui/SectionHeading';
+import { ArrowUpRight } from 'lucide-react';
 
 export const TeamSection: React.FC = () => {
   const founders = [
     {
       name: 'Ishan',
-      role: 'Strategy & Conversion Architecture',
-      focus: 'Business Economics & Funnel Engineering',
-      icon: <Target className="w-5 h-5 text-accent-navy" />,
-      iconBg: 'bg-accent-navy/10 border-accent-navy/25',
-      avatarBg: 'bg-gradient-to-br from-accent-navy/20 to-blue-200',
-      avatarText: 'text-accent-navy',
-      topBorder: 'border-t-accent-navy',
-      bio: 'Deeply focused on conversion psychology and local business economics. Specializes in finding where local websites leak high-ticket leads and re-architecting visitor journeys into frictionless booking pipelines.',
-      skills: ['Conversion Funnels', 'Customer Journey Mapping', 'Direct-Response Copy', 'Offer Architecture'],
+      role: 'Strategy & Conversion',
+      focus: 'Visitor psychology, commercial positioning, and frictionless inquiry funnels.',
+      tag: 'STRATEGY',
     },
     {
       name: 'Aryan',
-      role: 'UI/UX & Creative Direction',
-      focus: 'Editorial Aesthetics & Mobile Ergonomics',
-      icon: <Palette className="w-5 h-5 text-accent-gold" />,
-      iconBg: 'bg-accent-gold/10 border-accent-gold/25',
-      avatarBg: 'bg-gradient-to-br from-accent-gold/20 to-amber-200',
-      avatarText: 'text-accent-gold-dark',
-      topBorder: 'border-t-accent-gold',
-      bio: 'Crafts bespoke, authoritative visual systems that make local businesses look like the definitive market leader. Obsessed with typography, tactile spacing, and micro-interactions that build instant credibility.',
-      skills: ['Design Systems', 'Editorial Typography', 'Micro-Interactions', 'Mobile UI Ergonomics'],
+      role: 'Creative & Visual Direction',
+      focus: 'Editorial aesthetics, contemporary typography hierarchy, and brand presence.',
+      tag: 'CREATIVE',
     },
     {
       name: 'Kabir',
-      role: 'Frontend Engineering & Systems',
-      focus: 'Custom React & Technical Performance',
-      icon: <Code2 className="w-5 h-5 text-accent-forest" />,
-      iconBg: 'bg-accent-forest/10 border-accent-forest/25',
-      avatarBg: 'bg-gradient-to-br from-accent-forest/20 to-emerald-200',
-      avatarText: 'text-accent-forest',
-      topBorder: 'border-t-accent-forest',
-      bio: 'Builds clean, modular, sub-second web applications with zero script bloat. Obsessed with achieving 100/100 Lighthouse performance, local schema search ranking, and instant mobile responsiveness.',
-      skills: ['React & TypeScript', 'Lighthouse 100 Tuning', 'Local SEO Schemas', 'Workflow Automation'],
+      role: 'Engineering & Systems',
+      focus: 'Custom React architectures, sub-second edge performance, and tracking pipelines.',
+      tag: 'ENGINEERING',
+    },
+  ];
+
+  const principles = [
+    {
+      num: '01',
+      title: 'Direct Founder Execution',
+      text: 'Big agencies pitch you with their senior partners, then secretly pass your project to junior interns. At MEDIA-TARDS, the 3 founders design, code, and optimize everything personally.',
+    },
+    {
+      num: '02',
+      title: '2–3 Week Sprints',
+      text: 'We eliminate bloated committee meetings and endless discovery phases. We agree on the scope, build with intensity, and launch your presence in weeks rather than quarters.',
+    },
+    {
+      num: '03',
+      title: 'Custom Edge Code',
+      text: 'No clunky 40-plugin WordPress templates that break or take 6 seconds to load. We build clean, modern React applications with sub-second performance on global edge servers.',
     },
   ];
 
   return (
-    <section id="team" className="py-24 sm:py-32 bg-ivory-100 border-t border-sand-300 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="The Builders"
-          title="Meet the 3 Partners Behind Your Digital Growth"
-          subtitle="We are young, ambitious technologists who combine conversion strategy, visual design, and software engineering. We don't hide behind account managers—we build your product ourselves."
-        />
+    <section className="py-24 sm:py-36 bg-[#FDFCF9] border-t border-slate-900 relative" id="about">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Section Header */}
+        <div className="mb-16 sm:mb-24 pb-8 border-b border-slate-900 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="text-xs sm:text-sm font-mono tracking-[0.2em] text-slate-500 uppercase font-semibold block mb-3">
+              About / The Studio
+            </span>
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-950 tracking-tight leading-none uppercase">
+              3 Founders.<br />
+              Zero Account Managers.
+            </h2>
+          </div>
+          <p className="text-slate-700 text-base sm:text-lg max-w-md font-normal leading-relaxed">
+            MEDIA-TARDS is a young, internet-native creative agency. We build websites that look sharp, run socials that feel alive, and deploy ads that generate customers.
+          </p>
+        </div>
 
-        {/* Founders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
+        {/* The Belief Statement */}
+        <div className="p-8 sm:p-12 bg-ivory-100 border border-slate-900 rounded-xl mb-16 sm:mb-24">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-500 font-bold block mb-3">
+            Our Core Conviction
+          </span>
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-snug max-w-4xl">
+            "Most businesses don't have a traffic problem. They have a trust problem: slow websites, forgettable branding, and confusing friction. We fix all three."
+          </p>
+        </div>
+
+        {/* 3 Founders Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mb-20">
           {founders.map((founder, idx) => (
             <div
               key={founder.name}
-              className={`bg-white border border-sand-300 border-t-4 ${founder.topBorder} rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-warm-sm card-hover`}
+              className="bg-ivory-100 border border-sand-400 rounded-xl p-8 flex flex-col justify-between hover:border-slate-950 transition-colors duration-200"
             >
               <div>
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className={`w-14 h-14 rounded-2xl ${founder.avatarBg} border border-sand-300 flex items-center justify-center font-extrabold text-xl font-mono ${founder.avatarText}`}
-                  >
-                    0{idx + 1}
-                  </div>
-                  <div className={`p-2.5 rounded-xl border ${founder.iconBg}`}>{founder.icon}</div>
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-sand-300">
+                  <span className="font-mono text-xs tracking-widest text-slate-500 uppercase font-semibold">
+                    0{idx + 1} / {founder.tag}
+                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent-gold" />
                 </div>
 
-                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">{founder.name}</h3>
-                <p className="text-xs font-mono text-accent-gold mt-0.5 mb-2 font-semibold">{founder.role}</p>
-                <div className="inline-block text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-ivory-200 border border-sand-300 text-slate-500 mb-4">
+                <h3 className="font-display text-3xl font-extrabold text-slate-950 tracking-tight mb-1">
+                  {founder.name}
+                </h3>
+                <p className="font-mono text-xs font-semibold text-slate-500 uppercase tracking-wider mb-6">
+                  {founder.role}
+                </p>
+
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
                   {founder.focus}
-                </div>
-
-                <p className="text-sm text-slate-500 leading-relaxed mb-6">{founder.bio}</p>
+                </p>
               </div>
 
-              <div className="pt-6 border-t border-sand-300">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-2.5">
-                  Core Craft Focus
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {founder.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-ivory-200 border border-sand-300 text-slate-600"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              <div className="pt-8 mt-6 border-t border-sand-300 flex items-center justify-between text-xs font-mono text-slate-500">
+                <span>Direct Access</span>
+                <span className="text-slate-950 font-semibold">Partner</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Manifesto Banner — Navy dark contrast */}
-        <div className="mt-16 bg-accent-navy rounded-2xl p-8 sm:p-12 shadow-warm-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-dot-pattern opacity-10 pointer-events-none" />
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-gold via-accent-gold-light to-accent-coral" />
-
-          <div className="max-w-3xl relative z-10">
-            <div className="flex items-center gap-2 text-accent-gold text-xs font-mono mb-4">
-              <Sparkles className="w-4 h-4" />
-              <span className="uppercase tracking-widest font-semibold">The Founding Principle</span>
-            </div>
-            <h4 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-              "We have everything to prove—which is why your business wins."
-            </h4>
-            <p className="text-blue-200 text-sm sm:text-base leading-relaxed mb-8">
-              Established agencies treat local businesses as small retainer filler while reserving their best
-              talent for multi-million corporate accounts. For us, your project is our headline case study. We
-              bring obsessive craftsmanship, direct founder communication, and relentless drive to make your
-              business the definitive market leader.
-            </p>
-            <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-blue-300">
-              <span className="flex items-center gap-1.5 text-white">
-                <span className="w-2 h-2 rounded-full bg-accent-gold" />
-                Direct Partner Access
-              </span>
-              <span className="text-blue-500">•</span>
-              <span className="text-white">Zero Junior Hand-offs</span>
-              <span className="text-blue-500">•</span>
-              <span className="text-white">100% Custom Engineering</span>
-            </div>
+        {/* 3 Studio Principles */}
+        <div className="pt-16 border-t border-sand-400/80">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 font-bold block mb-10">
+            Why Work Directly With Us
+          </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12">
+            {principles.map((item) => (
+              <div key={item.num} className="space-y-3">
+                <span className="font-mono text-2xl font-bold text-slate-950 block">
+                  {item.num}
+                </span>
+                <h4 className="font-display text-xl font-bold text-slate-950">
+                  {item.title}
+                </h4>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Bottom CTA bar */}
+        <div className="mt-16 pt-8 border-t border-sand-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="font-mono text-sm text-slate-700 font-medium">
+            Ready to give your business an unfair internet advantage?
+          </p>
+          <a
+            href="#audit"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider font-bold text-slate-950 hover:text-accent-gold transition-colors"
+          >
+            <span>Talk with the founders</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </section>
   );
 };
+
+export default TeamSection;

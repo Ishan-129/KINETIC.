@@ -1,8 +1,8 @@
-# Kinetic Agency Website Implementation Plan
+# MEDIA-TARDS Agency Website Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a premier, conversion-focused digital agency website for "Kinetic", a digital growth studio founded by 3 collegiate builders, engineered to turn local businesses into market leaders through the Discover → Trust → Convert framework.
+**Goal:** Build a premier, conversion-focused digital agency website for "MEDIA-TARDS", a digital growth studio founded by 3 collegiate builders, engineered to turn local businesses into market leaders through the Discover → Trust → Convert framework.
 
 **Architecture:** Vite + React 18 + TypeScript + Tailwind CSS application structured into modular, reusable UI components, dedicated sections, interactive concept showcase modals, and responsive layout systems.
 
@@ -50,7 +50,7 @@
 - [ ] Create `src/components/ProcessSection.tsx`: 5-step transparent launch protocol (Discover, Blueprint, Craft, Code, Launch & Scale).
 
 ### Task 8: Why Us & The 3 Founders
-- [ ] Create `src/components/WhyUsSection.tsx`: direct comparison matrix (Kinetic vs Bloated Agencies vs Cheap Freelancers).
+- [ ] Create `src/components/WhyUsSection.tsx`: direct comparison matrix (MEDIA-TARDS vs Bloated Agencies vs Cheap Freelancers).
 - [ ] Create `src/components/TeamSection.tsx`: authentic, high-conviction profiles for the 3 co-founders highlighting complementary skill sets.
 
 ### Task 9: Interactive Digital Audit & Scope Estimator

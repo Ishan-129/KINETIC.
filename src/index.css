@@ -4,162 +4,145 @@
 
 @layer base {
   :root {
-    --font-display: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Design tokens */
-    --background: #FDFCF9;
-    --color-bg: #FDFCF9;
-    --color-bg-alt: #F8F4EE;
-    --color-border: #E4D9C7;
-    --color-border-subtle: #EDE5D8;
-    --color-text: #111827;
-    --color-text-muted: #6B7280;
-    --color-gold: #C9922A;
-    --color-navy: #1E3A5F;
+    /* Kinetic Studio Design Tokens */
+    --background: #F5F2EB;
+    --color-bg: #F5F2EB;
+    --color-bg-alt: #EDE8DC;
+    --color-ink: #050817;
+    --color-border: #D8D1C2;
+    --color-border-dark: #1F2438;
+    --color-gold: #D5A329;
+    --color-acid: #C7FF3D;
+    --color-muted: #5A6072;
+  }
+
+  html {
+    scroll-behavior: auto; /* Managed by Lenis */
+    background-color: var(--color-bg);
   }
 
   body {
     background-color: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-ink);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* When custom cursor is active on fine-pointer devices, hide the OS cursor */
+  @media (pointer: fine) {
+    body.custom-cursor-enabled,
+    body.custom-cursor-enabled * {
+      cursor: none !important;
+    }
   }
 
   ::selection {
-    background-color: rgba(201, 146, 42, 0.18);
-    color: #9B6E1A;
+    background-color: #050817;
+    color: #C7FF3D;
   }
 }
 
 /* ────────────────────────────────────────────────
-   Background Patterns
+   Studio Architectural Grid & Hairline Textures
 ──────────────────────────────────────────────── */
-.bg-dot-pattern {
-  background-image: radial-gradient(circle, rgba(180, 140, 80, 0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.bg-architectural-grid {
-  background-size: 40px 40px;
+.bg-studio-grid {
+  background-size: 48px 48px;
   background-image:
-    linear-gradient(to right, rgba(180, 140, 80, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(180, 140, 80, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(5, 8, 23, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(5, 8, 23, 0.045) 1px, transparent 1px);
+}
+
+.bg-studio-grid-dark {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.bg-dot-matrix {
+  background-image: radial-gradient(circle, rgba(5, 8, 23, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* ────────────────────────────────────────────────
-   Radial Glows (light theme)
+   Studio Borders & Rules
 ──────────────────────────────────────────────── */
-.radial-glow-gold {
-  background: radial-gradient(ellipse 700px 400px at 50% 0%, rgba(201, 146, 42, 0.12), transparent 70%);
+.border-hairline {
+  border-width: 1px;
+  border-color: rgba(5, 8, 23, 0.14);
 }
 
-.radial-glow-coral {
-  background: radial-gradient(ellipse 500px 300px at 50% 100%, rgba(224, 92, 58, 0.08), transparent 70%);
-}
-
-/* Legacy — still used in dark case-preview components */
-.radial-glow-cyan {
-  background: radial-gradient(circle 600px at 50% 0%, rgba(56, 189, 248, 0.12), transparent 70%);
-}
-.radial-glow-amber {
-  background: radial-gradient(circle 500px at 50% 100%, rgba(245, 158, 11, 0.08), transparent 70%);
+.border-studio-black {
+  border-color: #050817;
 }
 
 /* ────────────────────────────────────────────────
-   Scroll-Reveal Utility
+   Kinetic Studio Marquees
 ──────────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
-.reveal-delay-1 { transition-delay: 0.10s; }
-.reveal-delay-2 { transition-delay: 0.20s; }
-.reveal-delay-3 { transition-delay: 0.30s; }
-.reveal-delay-4 { transition-delay: 0.40s; }
-
-/* ────────────────────────────────────────────────
-   Card Hover Lift
-──────────────────────────────────────────────── */
-.card-hover {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 32s linear infinite;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(120, 80, 20, 0.14);
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 28s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
 }
 
 /* ────────────────────────────────────────────────
-   Gold Shimmer Button Animation
-──────────────────────────────────────────────── */
-.btn-gold-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-gold-shimmer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 70%
-  );
-  background-size: 200% 100%;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.btn-gold-shimmer:hover::after {
-  opacity: 1;
-  animation: shimmer 0.7s linear;
-}
-
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* ────────────────────────────────────────────────
-   Warm Scrollbar
+   Studio Scrollbar
 ──────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0EAE0;
+  background: #F5F2EB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C9B99A;
-  border-radius: 4px;
-  border: 2px solid #F0EAE0;
+  background: #050817;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A89070;
+  background: #D5A329;
 }
 
 /* ────────────────────────────────────────────────
-   Divider accent line
+   Reduced Motion
 ──────────────────────────────────────────────── */
-.divider-gold {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #C9922A, transparent);
-  border: none;
-  opacity: 0.4;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+

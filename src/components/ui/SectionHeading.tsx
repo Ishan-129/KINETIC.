@@ -34,7 +34,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-5 text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto">
+        <p className={`mt-5 text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl ${align === 'center' ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}

@@ -1,14 +1,16 @@
 export interface CaseStudy {
   id: string;
   name: string;
+  client: string;
   category: string;
+  year: string;
   badge: string;
   tagline: string;
   summary: string;
   challenge: string;
   solution: string;
-  keyOutcomes: {
-    metric: string;
+  focusHighlights: {
+    spec: string;
     label: string;
   }[];
   features: string[];
@@ -21,44 +23,48 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "aura-clinic",
     name: "AURA Dental & Facial Aesthetics",
-    category: "High-Ticket Healthcare / Aesthetics",
-    badge: "Concept Project • Medical",
-    tagline: "Replacing clinical anxiety with calm, premium appointment flow.",
+    client: "AURA Aesthetics",
+    category: "High-Ticket Healthcare",
+    year: "2025",
+    badge: "Studio Prototype",
+    tagline: "Replacing clinical anxiety with calm, editorial booking flow.",
     summary: "A private aesthetic practice with world-class clinicians whose legacy site felt cold, clinical, and difficult to navigate on mobile devices.",
-    challenge: "Over 68% of mobile visitors dropped off before reaching the consultation form. Patients felt intimidated by technical dental jargon, and booking required a multi-step phone call during office hours.",
-    solution: "Engineered an editorial, calming aesthetic featuring transparent treatment guides, interactive smile visualizers, and a frictionless 2-tap appointment scheduler synced directly to clinic calendars.",
-    keyOutcomes: [
-      { metric: "+44%", label: "Mobile booking conversion" },
-      { metric: "0.8s", label: "Mobile First Contentful Paint" },
-      { metric: "-70%", label: "Unqualified phone triage time" }
+    challenge: "Visitors were intimidated by technical dental jargon, and booking required calling the front desk during business hours.",
+    solution: "An editorial, calming aesthetic featuring transparent treatment guides, interactive smile visualizers, and a frictionless 2-tap appointment scheduler.",
+    focusHighlights: [
+      { spec: "Sub-1s", label: "Mobile First Contentful Paint" },
+      { spec: "2-Tap", label: "Instant slot reservation flow" },
+      { spec: "Zero", label: "Front-desk triage phone bottleneck" }
     ],
     features: [
       "Treatment Visualizer with transparent pricing tiers",
       "Instant 2-tap doctor & slot selection",
       "Patient anxiety reduction micro-copy & verified results",
-      "Automated SMS confirmation & intake form sync"
+      "Direct calendar sync & SMS intake confirmation"
     ],
-    deliverables: ["Brand Identity", "Custom React Application", "Direct Calendar Integration", "Local SEO Architecture"],
+    deliverables: ["Brand Direction", "Custom React Architecture", "Direct Calendar Integration", "Mobile Optimization"],
     color: "from-sky-500/20 via-sky-500/5 to-transparent",
     accentColor: "#38BDF8"
   },
   {
     id: "forge-athletics",
     name: "FORGE Athletic Club",
-    category: "Boutique Fitness & Performance",
-    badge: "Concept Project • Fitness",
-    tagline: "Turning neighborhood gym hunters into registered trial members in under 60 seconds.",
-    summary: "An elite strength and conditioning facility struggling to convert Instagram traffic into physical walkthroughs and high-margin membership sales.",
-    challenge: "Class timetables were buried inside a downloadable PDF. Visitors couldn't tell which session matched their fitness level, and trial passes required an in-person front-desk registration.",
-    solution: "Replaced the PDF with an interactive, filterable class matrix and built a frictionless 1-click Free Day Pass checkout that delivers an instant digital wallet pass to the prospect's phone.",
-    keyOutcomes: [
-      { metric: "3.2x", label: "Increase in trial pass claims" },
-      { metric: "99/100", label: "Mobile Performance Score" },
-      { metric: "48 hrs", label: "From visitor to gym floor" }
+    client: "FORGE Club",
+    category: "Boutique Performance & Fitness",
+    year: "2025",
+    badge: "Studio Prototype",
+    tagline: "Turning gym hunters into trial members in under 60 seconds.",
+    summary: "An elite strength and conditioning facility struggling to convert Instagram traffic into physical walkthroughs and trial members.",
+    challenge: "Class timetables were buried inside downloadable PDFs and trial passes required an in-person front-desk form.",
+    solution: "An interactive, filterable class matrix paired with a frictionless 1-click Free Day Pass checkout delivered straight to the prospect's mobile wallet.",
+    focusHighlights: [
+      { spec: "100/100", label: "Lighthouse Mobile Performance" },
+      { spec: "1-Click", label: "Digital Day Pass delivery" },
+      { spec: "Live", label: "Filterable session timetable" }
     ],
     features: [
       "Live interactive timetable with coach & intensity tags",
-      "1-Click Digital Day Pass with instant Apple/Google Wallet pass",
+      "1-Click Digital Day Pass with instant mobile pass",
       "Membership ROI comparison calculator",
       "Coach roster with video intro reels"
     ],
@@ -69,24 +75,26 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "atelier-studio",
     name: "ATELIER Stone & Timber",
-    category: "Custom Architecture & High-End Renovation",
-    badge: "Concept Project • Craftsmanship",
-    tagline: "Showcasing $100k+ architectural craft with tactile, editorial precision.",
-    summary: "A bespoke residential architecture and interior millwork studio whose prior website looked like a generic template contractor page.",
-    challenge: "Wealthy homeowners and commercial developers were looking for proof of uncompromising quality, but the studio's portfolio was a disorganized gallery of low-res mobile photos.",
-    solution: "Constructed an immersive, gallery-style narrative with before/after material reveals, architectural detail inspections, and an interactive Project Scope Estimator that pre-qualifies budgets before consultations.",
-    keyOutcomes: [
-      { metric: "+65%", label: "High-budget consultation leads" },
-      { metric: "$120k", label: "Average qualified lead project size" },
-      { metric: "100%", label: "Elimination of low-budget tire-kickers" }
+    client: "ATELIER Studio",
+    category: "Architecture & Bespoke Millwork",
+    year: "2025",
+    badge: "Studio Prototype",
+    tagline: "Showcasing architectural craft with tactile, editorial precision.",
+    summary: "A bespoke residential architecture and interior millwork studio whose prior website looked like a generic contractor template.",
+    challenge: "Clients looking for uncompromising craft were greeted by a disorganized gallery of low-res photos with no scope qualification.",
+    solution: "A gallery-style editorial narrative with tactile material inspection, blueprint case studies, and an interactive Project Scope Estimator.",
+    focusHighlights: [
+      { spec: "Editorial", label: "Full-bleed craft photography layout" },
+      { spec: "Tactile", label: "Material & finish inspector" },
+      { spec: "Pre-qualified", label: "Budget & scope estimator" }
     ],
     features: [
       "Tactile Material & Finish Inspector (Walnut, Brass, Carrara)",
       "Interactive Budget & Scope Pre-qualifier",
       "Full-screen project case study narratives with blueprints",
-      "Direct WhatsApp concierge for high-net-worth inquiries"
+      "Direct WhatsApp concierge for high-intent inquiries"
     ],
-    deliverables: ["Editorial Web System", "Budget Pre-qualifier", "Visual Asset Direction", "Local Organic SEO"],
+    deliverables: ["Editorial Web System", "Budget Pre-qualifier", "Visual Direction", "Sub-second Edge Hosting"],
     color: "from-emerald-500/20 via-emerald-500/5 to-transparent",
     accentColor: "#10B981"
   }

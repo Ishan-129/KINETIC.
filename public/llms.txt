@@ -1,0 +1,39 @@
+# MEDIA-TARDS
+
+> A creative digital growth studio that turns overlooked local businesses into the obvious choice in their market.
+
+## About
+
+MEDIA-TARDS is a boutique digital growth studio founded by three collegiate builders — Ishan, Aryan, and Kabir. We specialise in high-performance custom websites, social media management, and paid lead generation for ambitious local businesses.
+
+We operate on a direct-to-founders model: no account managers, no junior hand-offs. Every project is handled personally by the founding partners.
+
+Our core philosophy is the Discover → Trust → Convert framework — ensuring that target customers find the business, build trust, and take action.
+
+## Services
+
+- Complete Website Pack — professionally designed websites built and launched for local businesses, including responsive design, WhatsApp integration, contact forms, Google Maps, basic SEO, and mobile optimisation. Starting from ₹7,999 (one-time).
+- Full Social Media Management — strategy, content calendar, creative posts, reels, captions, hashtags, scheduling, community management, and monthly analytics. Starting from ₹5,999/month.
+- Marketing + Lead Generation Ads — Meta Ads management, audience research, ad creatives, lead forms, WhatsApp lead integration, tracking, retargeting, and monthly reporting. Starting from ₹4,999/month (ad spend is separate).
+
+## Key Pages
+
+- Homepage: https://mediatards.agency/
+- Services: https://mediatards.agency/#services
+- Pricing: https://mediatards.agency/#pricing
+- Case Studies / Concept Work: https://mediatards.agency/#work
+- Team / Founders: https://mediatards.agency/#team
+- Free Digital Audit: https://mediatards.agency/#audit
+
+## Contact
+
+- Email: founders@mediatards.agency
+- Free audit request: https://mediatards.agency/#audit
+
+## Brand
+
+- Official name: MEDIA-TARDS
+- Tagline: Digital Growth Studio
+- Philosophy: Discover → Trust → Convert
+- Logo: Custom merged E + D monogram mark on dark badge background
+- Founders: Ishan (Strategy & Conversion), Aryan (UI/UX & Creative Direction), Kabir (Frontend Engineering)
