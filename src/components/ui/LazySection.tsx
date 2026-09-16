@@ -80,7 +80,6 @@ interface LazySectionProps {
   minHeight?: string;
   bgClassName?: string;
   skeletonTitle?: string;
-  rootMargin?: string;
   children: React.ReactNode;
 }
 
@@ -88,46 +87,45 @@ const SectionSkeleton: React.FC<{
   title?: string;
   bgClassName?: string;
   minHeight?: string;
-}> = ({ title, bgClassName = 'bg-ivory-50', minHeight = 'min-h-[450px]' }) => {
+}> = ({ title, bgClassName = 'bg-[#080B12]', minHeight = 'min-h-[450px]' }) => {
   return (
     <div
       className={`w-full ${minHeight} ${bgClassName} flex flex-col items-center justify-center p-8 transition-opacity duration-300`}
     >
       <div className="max-w-md w-full flex flex-col items-center gap-4 text-center">
-        {/* Subtle glowing pill */}
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-sand-200/60 border border-sand-300 text-xs font-mono text-slate-500 animate-pulse">
-          <span className="w-2 h-2 rounded-full bg-accent-gold animate-ping" />
+        {/* Loading indicator */}
+        <div className="flex items-center gap-2 px-3 py-1.5 border border-white/[0.08] text-[10px] font-mono text-[#525C71] animate-pulse">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D] animate-ping" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
           <span>{title || 'Loading section...'}</span>
         </div>
 
         {/* Shimmer placeholders */}
-        <div className="w-3/4 h-8 bg-sand-200/50 rounded-lg animate-pulse" />
-        <div className="w-1/2 h-4 bg-sand-200/30 rounded-md animate-pulse" />
+        <div className="w-3/4 h-8 bg-white/[0.04] animate-pulse" />
+        <div className="w-1/2 h-4 bg-white/[0.03] animate-pulse" />
 
         <div className="w-full grid grid-cols-3 gap-4 mt-6">
-          <div className="h-28 bg-sand-200/40 rounded-xl animate-pulse" />
-          <div className="h-28 bg-sand-200/40 rounded-xl animate-pulse" />
-          <div className="h-28 bg-sand-200/40 rounded-xl animate-pulse" />
+          <div className="h-28 bg-white/[0.03] animate-pulse" />
+          <div className="h-28 bg-white/[0.03] animate-pulse" />
+          <div className="h-28 bg-white/[0.03] animate-pulse" />
         </div>
       </div>
     </div>
   );
 };
 
+
 export const LazySection: React.FC<LazySectionProps> = ({
   id,
   minHeight = 'min-h-[450px]',
   bgClassName = 'bg-ivory-50',
   skeletonTitle,
-  rootMargin = '350px 0px',
   children,
 }) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pendingScrollRef = useRef<boolean>(false);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  // When the section mounts (lazy content loaded), perform pending scroll
+  // When the lazy chunk finishes loading, perform any pending hash-scroll
   const handleMount = useCallback(() => {
     setIsMounted(true);
     if (pendingScrollRef.current && containerRef.current) {
@@ -136,19 +134,16 @@ export const LazySection: React.FC<LazySectionProps> = ({
     }
   }, []);
 
+  // Handle nav-link clicks and hash navigation (scroll-to only, no gating)
   useEffect(() => {
-    // Check if current URL hash matches this section's id
+    // On initial load, scroll if the URL already has this section's hash
     if (id && window.location.hash === `#${id}`) {
-      setIsVisible(true);
+      pendingScrollRef.current = true;
     }
 
-    // Custom event to force-load on nav link click
     const handleCustomLoad = (e: Event) => {
       const customEvent = e as CustomEvent<{ id: string }>;
       if (id && customEvent.detail?.id === id) {
-        setIsVisible(true);
-
-        // If already mounted, scroll immediately; otherwise, defer
         if (isMounted && containerRef.current) {
           smoothScrollToElement(containerRef.current);
         } else {
@@ -158,8 +153,12 @@ export const LazySection: React.FC<LazySectionProps> = ({
     };
 
     const handleHashChange = () => {
-      if (id && window.location.hash === `#${id}`) {
-        setIsVisible(true);
+      if (id && window.location.hash === `#${id}` && containerRef.current) {
+        if (isMounted) {
+          smoothScrollToElement(containerRef.current);
+        } else {
+          pendingScrollRef.current = true;
+        }
       }
     };
 
@@ -172,61 +171,28 @@ export const LazySection: React.FC<LazySectionProps> = ({
     };
   }, [id, isMounted]);
 
-  useEffect(() => {
-    if (isVisible) return; // Already triggered
-
-    const node = containerRef.current;
-    if (!node) return;
-
-    // Use IntersectionObserver to load when user approaches
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin,
-        threshold: 0,
-      }
-    );
-
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [isVisible, rootMargin]);
-
+  // Always render children — IntersectionObserver cannot be used here because
+  // Lenis smooth-scroll keeps the native browser scroll position at 0 and moves
+  // content via CSS transform, so the observer never fires for below-fold sections.
   return (
     <div
       ref={containerRef}
       id={id}
       className="scroll-mt-24"
     >
-      {isVisible ? (
-        <Suspense
-          fallback={
-            <SectionSkeleton
-              title={skeletonTitle}
-              bgClassName={bgClassName}
-              minHeight={minHeight}
-            />
-          }
-        >
-          <MountNotifier onMount={handleMount}>
-            {children}
-          </MountNotifier>
-        </Suspense>
-      ) : (
-        <SectionSkeleton
-          title={skeletonTitle}
-          bgClassName={bgClassName}
-          minHeight={minHeight}
-        />
-      )}
+      <Suspense
+        fallback={
+          <SectionSkeleton
+            title={skeletonTitle}
+            bgClassName={bgClassName}
+            minHeight={minHeight}
+          />
+        }
+      >
+        <MountNotifier onMount={handleMount}>
+          {children}
+        </MountNotifier>
+      </Suspense>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Check, Cpu, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Check, ArrowRight } from 'lucide-react';
 
 interface Station {
   id: string;
@@ -15,11 +15,12 @@ interface Station {
   workflow: { step: string; label: string; detail: string }[];
   deliverables: string[];
   techStack: string[];
+  accentColor: string;
 }
 
 export const StudioStationsSection: React.FC = () => {
   const [activeStationId, setActiveStationId] = useState<string>('build');
-  const [activeStepIdx, setActiveStepIdx] = useState<number>(1);
+  const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
 
   const stations: Station[] = [
     {
@@ -32,6 +33,7 @@ export const StudioStationsSection: React.FC = () => {
       price: '₹7,999',
       billing: 'One-time payment',
       turnaround: '2–3 weeks rapid sprint',
+      accentColor: '#C7FF3D',
       workflow: [
         { step: '01', label: 'DISCOVERY', detail: 'Positioning & visitor psychological triggers' },
         { step: '02', label: 'DESIGN', detail: 'Custom Figma art direction & typography' },
@@ -60,6 +62,7 @@ export const StudioStationsSection: React.FC = () => {
       price: '₹5,999',
       billing: 'Starting per month',
       turnaround: 'Continuous monthly engine',
+      accentColor: '#3B8EFF',
       workflow: [
         { step: '01', label: 'STRATEGY', detail: 'Competitor audit & monthly content calendar' },
         { step: '02', label: 'CONTENT', detail: '12 branded posts & 8 vertical video reels' },
@@ -88,11 +91,12 @@ export const StudioStationsSection: React.FC = () => {
       price: '₹4,999',
       billing: 'Starting per month (+ ad spend)',
       turnaround: 'Live within 5 business days',
+      accentColor: '#FF4F3B',
       workflow: [
-        { step: '01', label: 'AD', detail: 'High-converting video & carousel creatives' },
+        { step: '01', label: 'AD CREATIVE', detail: 'High-converting video & carousel creatives' },
         { step: '02', label: 'LANDING PAGE', detail: 'Frictionless mobile capture destination' },
-        { step: '03', label: 'LEAD', detail: 'Instant WhatsApp & email lead alerts' },
-        { step: '04', label: 'CONVERSION', detail: 'Retargeting pixel & cost-per-lead tuning' },
+        { step: '03', label: 'LEAD CAPTURE', detail: 'Instant WhatsApp & email lead alerts' },
+        { step: '04', label: 'OPTIMIZATION', detail: 'Retargeting pixel & cost-per-lead tuning' },
       ],
       deliverables: [
         'Meta (Instagram / Facebook) campaign architecture',
@@ -108,141 +112,147 @@ export const StudioStationsSection: React.FC = () => {
     },
   ];
 
-  const currentStation = stations.find((s) => s.id === activeStationId) || stations[0];
+  const current = stations.find((s) => s.id === activeStationId) || stations[0];
 
   return (
-    <section className="py-24 sm:py-36 bg-studio-bg border-t border-studio-ink relative" id="services">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section
+      className="py-24 sm:py-36 bg-[#0D1117] border-t border-white/[0.06] relative overflow-hidden"
+      id="services"
+    >
+      <div className="noise-section" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
         {/* Section Header */}
-        <div className="mb-14 sm:mb-20 pb-8 border-b border-studio-ink flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="mb-14 sm:mb-20 pb-8 border-b border-white/[0.08] flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-studio-gold" />
-              <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-studio-ink/70 uppercase font-bold">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D]" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
+              <span className="text-[10px] font-mono tracking-[0.25em] text-[#525C71] uppercase font-bold">
                 STUDIO STATIONS / WHAT WE DO
               </span>
             </div>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-studio-ink tracking-tight leading-none uppercase">
+            <h2
+              className="font-display font-black text-[#ECEEF2] tracking-tight leading-[0.88] uppercase"
+              style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)' }}
+            >
               Three Stations.<br />
               Zero Fluff.
             </h2>
           </div>
-          <p className="text-studio-ink/80 text-base sm:text-lg max-w-md font-medium leading-relaxed">
+          <p className="text-[#8A92A6] text-base sm:text-lg max-w-md font-body leading-relaxed">
             We don't offer 40 confusing services. We build websites that establish credibility, run socials that keep you relevant, and deploy ads that capture clients.
           </p>
         </div>
 
-        {/* Interactive Studio Station Switcher Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-10">
+        {/* Station Tab Rail */}
+        <div className="flex flex-col md:flex-row gap-2 mb-10">
           {stations.map((station) => {
             const isActive = station.id === activeStationId;
             return (
               <button
                 key={station.id}
-                onClick={() => {
-                  setActiveStationId(station.id);
-                  setActiveStepIdx(1);
-                }}
+                onClick={() => { setActiveStationId(station.id); setActiveStepIdx(0); }}
                 data-cursor="explore"
                 data-cursor-text={`STATION ${station.num}`}
-                className={`p-5 text-left border transition-all duration-200 relative ${
+                className={`flex-1 p-5 text-left transition-all duration-200 relative border ${
                   isActive
-                    ? 'bg-studio-ink text-[#F5F2EB] border-studio-ink shadow-studio-md'
-                    : 'bg-[#F5F2EB] text-studio-ink border-studio-ink/30 hover:border-studio-ink hover:bg-studio-bg-alt'
+                    ? 'border-transparent bg-[#13181F] text-[#ECEEF2]'
+                    : 'border-white/[0.06] bg-transparent text-[#525C71] hover:border-white/[0.10] hover:text-[#8A92A6]'
                 }`}
+                style={isActive ? {
+                  borderLeft: `2px solid ${station.accentColor}`,
+                  boxShadow: `inset 0 0 30px rgba(${station.accentColor === '#C7FF3D' ? '199,255,61' : station.accentColor === '#3B8EFF' ? '59,142,255' : '255,79,59'},0.04)`,
+                } : {}}
               >
-                <div className="flex items-center justify-between pb-3 mb-2 border-b border-current/20">
-                  <span className="font-mono text-xs font-bold tracking-widest uppercase">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-mono text-[10px] font-bold tracking-widest uppercase opacity-60">
                     STATION {station.num}
                   </span>
                   <span
-                    className={`font-mono text-xs font-bold px-2 py-0.5 rounded ${
-                      isActive ? 'bg-studio-gold text-studio-ink' : 'bg-studio-ink/10 text-studio-ink'
-                    }`}
+                    className="font-mono text-[10px] font-black px-2 py-0.5"
+                    style={isActive ? {
+                      color: station.accentColor,
+                      background: `${station.accentColor}15`,
+                    } : { color: '#525C71' }}
                   >
                     {station.price}
                   </span>
                 </div>
-                <h3 className="font-display text-xl sm:text-2xl font-black tracking-tight uppercase">
+                <h3 className="font-display text-lg sm:text-xl font-black tracking-tight uppercase leading-tight">
                   {station.name}
                 </h3>
-                <span className="font-mono text-[11px] opacity-70 block mt-1 tracking-wider uppercase">
-                  {station.tag}
-                </span>
-
-                {isActive && (
-                  <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-studio-ink rotate-45 border-r border-b border-studio-ink hidden md:block" />
-                )}
               </button>
             );
           })}
         </div>
 
-        {/* Station Workspace Canvas (Interactive Station Details & Live Workflow Diagram) */}
-        <div className="bg-[#F5F2EB] border-2 border-studio-ink p-6 sm:p-10 shadow-studio-lg relative">
+        {/* Station Canvas */}
+        <div className="glass-panel-hi p-6 sm:p-10 relative overflow-hidden">
+          {/* Accent glow in corner */}
+          <div
+            className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+            style={{
+              background: `radial-gradient(circle, ${current.accentColor}08 0%, transparent 70%)`,
+            }}
+          />
+
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentStation.id}
+              key={current.id}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-10"
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-10 relative z-10"
             >
-              {/* Top Station Header & Pricing */}
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-8 border-b border-studio-ink/20">
+              {/* Header + Pricing */}
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-8 border-b border-white/[0.06]">
                 <div className="max-w-2xl">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="font-mono text-3xl sm:text-4xl font-black text-studio-ink">
-                      {currentStation.num}
+                    <span className="font-mono text-4xl sm:text-5xl font-black" style={{ color: current.accentColor }}>
+                      {current.num}
                     </span>
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-studio-gold">
-                      // {currentStation.tag}
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#525C71]">
+                      // {current.tag}
                     </span>
                   </div>
-                  <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-studio-ink tracking-tight uppercase mb-3">
-                    {currentStation.name}
+                  <h3
+                    className="font-display font-black text-[#ECEEF2] tracking-tight uppercase mb-3"
+                    style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+                  >
+                    {current.name}
                   </h3>
-                  <p className="text-base sm:text-lg text-studio-ink/80 font-medium leading-relaxed">
-                    {currentStation.description}
-                  </p>
+                  <p className="text-[#8A92A6] font-body leading-relaxed">{current.description}</p>
                 </div>
 
-                {/* Pricing & Guarantee Box */}
-                <div className="p-6 bg-studio-ink text-[#F5F2EB] border border-studio-ink min-w-[280px] shrink-0">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent-acid font-bold block mb-1">
+                {/* Pricing box */}
+                <div
+                  className="p-6 bg-[#080B12] border min-w-[260px] shrink-0"
+                  style={{ borderColor: `${current.accentColor}30` }}
+                >
+                  <span className="font-mono text-[9px] uppercase tracking-widest font-bold block mb-2" style={{ color: current.accentColor }}>
                     INVESTMENT & TIMELINE
                   </span>
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display text-4xl font-black text-[#F5F2EB]">
-                      {currentStation.price}
-                    </span>
-                    <span className="font-mono text-xs text-studio-gold font-bold">
-                      {currentStation.billing}
-                    </span>
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="font-display text-4xl font-black text-[#ECEEF2]">{current.price}</span>
+                    <span className="font-mono text-xs text-[#525C71] font-bold">{current.billing}</span>
                   </div>
-                  <div className="font-mono text-xs text-[#F5F2EB]/70 border-t border-white/15 pt-3 mt-3 space-y-1">
-                    <div>• Turnaround: <span className="text-white font-semibold">{currentStation.turnaround}</span></div>
-                    <div>• Execution: <span className="text-white font-semibold">100% Direct Founders</span></div>
+                  <div className="font-mono text-[11px] text-[#525C71] border-t border-white/[0.06] pt-3 mt-3 space-y-1.5">
+                    <div>Turnaround: <span className="text-[#ECEEF2] font-semibold">{current.turnaround}</span></div>
+                    <div>Execution: <span className="text-[#ECEEF2] font-semibold">100% Direct Founders</span></div>
                   </div>
                 </div>
               </div>
 
-              {/* ── Signature Interactive Diagram Construction System ── */}
+              {/* Workflow Pipeline */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs uppercase tracking-widest font-bold text-studio-ink flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-studio-gold" />
-                    Interactive Workflow Diagram (Click steps to inspect)
-                  </span>
-                  <span className="font-mono text-[11px] text-studio-ink/60 uppercase hidden sm:inline">
-                    Step {activeStepIdx + 1} of 4
-                  </span>
-                </div>
-
-                {/* Animated Diagram Steps Pipeline */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {currentStation.workflow.map((item, idx) => {
+                <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-[#525C71] flex items-center gap-2 mb-5">
+                  <span style={{ color: current.accentColor }}>◆</span>
+                  Interactive Workflow — Click a phase to inspect
+                </span>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  {current.workflow.map((item, idx) => {
                     const isSelected = activeStepIdx === idx;
                     return (
                       <div
@@ -250,74 +260,77 @@ export const StudioStationsSection: React.FC = () => {
                         onClick={() => setActiveStepIdx(idx)}
                         data-cursor="select"
                         data-cursor-text={`PHASE ${item.step}`}
-                        className={`p-4 border cursor-pointer transition-all duration-200 relative ${
+                        className={`p-4 border cursor-pointer transition-all duration-200 ${
                           isSelected
-                            ? 'bg-studio-ink text-[#F5F2EB] border-studio-ink shadow-studio-sm'
-                            : 'bg-white border-studio-ink/20 hover:border-studio-ink text-studio-ink'
+                            ? 'bg-[#080B12] text-[#ECEEF2]'
+                            : 'bg-transparent border-white/[0.06] hover:border-white/[0.12] text-[#525C71]'
                         }`}
+                        style={isSelected ? { borderColor: `${current.accentColor}50` } : {}}
                       >
-                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-current/20 font-mono text-xs font-bold">
+                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-current/10 font-mono text-[10px] font-bold">
                           <span>PHASE {item.step}</span>
                           {isSelected ? (
-                            <span className="text-accent-acid font-extrabold animate-pulse">● ACTIVE</span>
+                            <span className="font-extrabold" style={{ color: current.accentColor }}>● ACTIVE</span>
                           ) : (
-                            <ArrowRight className="w-3.5 h-3.5 opacity-40" />
+                            <ArrowRight className="w-3 h-3 opacity-30" />
                           )}
                         </div>
-
-                        <div className="font-display text-lg font-black tracking-tight mb-1">
+                        <div
+                          className="font-display text-base font-black tracking-tight mb-1"
+                          style={isSelected ? { color: current.accentColor } : {}}
+                        >
                           {item.label}
                         </div>
-                        <p className={`text-xs leading-snug font-mono ${isSelected ? 'text-[#F5F2EB]/80' : 'text-studio-ink/70'}`}>
-                          {item.detail}
-                        </p>
+                        <p className="text-[10px] font-mono leading-snug opacity-60">{item.detail}</p>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Deliverables Checklist & Tech Stack */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 border-t border-studio-ink/20">
+              {/* Deliverables + CTA */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 border-t border-white/[0.06]">
                 <div className="lg:col-span-8">
-                  <span className="font-mono text-xs uppercase tracking-widest text-studio-ink font-bold block mb-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#525C71] font-bold block mb-4">
                     Exact Deliverables Included:
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm text-studio-ink">
-                    {currentStation.deliverables.map((item, i) => (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-[#8A92A6]">
+                    {current.deliverables.map((item, i) => (
                       <div key={i} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-studio-gold mt-0.5 shrink-0" />
-                        <span className="leading-snug font-medium">{item}</span>
+                        <Check className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: current.accentColor }} />
+                        <span className="leading-snug font-body">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="lg:col-span-4 bg-white border border-studio-ink/20 p-5 flex flex-col justify-between">
+                <div className="lg:col-span-4 bg-[#080B12] border border-white/[0.06] p-5 flex flex-col justify-between">
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-widest text-studio-ink/70 font-bold block mb-3">
-                      Studio Tooling & Stack:
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#525C71] font-bold block mb-3">
+                      Studio Tooling:
                     </span>
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {currentStation.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 bg-studio-bg border border-studio-ink/20 font-mono text-[11px] font-bold text-studio-ink"
-                        >
+                      {current.techStack.map((tech) => (
+                        <span key={tech} className="px-2.5 py-1 bg-[#13181F] border border-white/[0.06] font-mono text-[10px] font-bold text-[#8A92A6]">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-
                   <a
                     href="#audit"
                     data-cursor="cta"
                     data-cursor-text="BOOK SPRINT ↗"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 bg-studio-ink text-[#F5F2EB] font-mono text-xs uppercase tracking-wider font-bold hover:bg-studio-gold hover:text-studio-ink transition-colors border border-studio-ink"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 font-mono text-[11px] uppercase tracking-wider font-black transition-all duration-200 text-[#080B12]"
+                    style={{
+                      background: current.accentColor,
+                      boxShadow: `0 0 20px ${current.accentColor}30`,
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#ffffff'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = current.accentColor; }}
                   >
-                    <span>Deploy Station {currentStation.num}</span>
-                    <ArrowUpRight className="w-4 h-4 text-accent-acid" />
+                    <span>Deploy Station {current.num}</span>
+                    <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -330,4 +343,3 @@ export const StudioStationsSection: React.FC = () => {
 };
 
 export default StudioStationsSection;
-

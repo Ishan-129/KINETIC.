@@ -55,7 +55,10 @@ export const App: React.FC = () => {
 
   return (
     <SmoothScrollProvider>
-      <div className="min-h-screen bg-studio-bg text-studio-ink flex flex-col selection:bg-studio-ink selection:text-accent-acid relative">
+      <div className="min-h-screen bg-[#080B12] text-[#ECEEF2] flex flex-col selection:bg-[#C7FF3D]/20 selection:text-[#C7FF3D] relative">
+        {/* Global grain/noise texture overlay */}
+        <div className="noise-overlay" aria-hidden="true" />
+
         <SpeedInsights />
         <Analytics />
 
@@ -77,7 +80,7 @@ export const App: React.FC = () => {
           <LazySection
             id="services"
             minHeight="min-h-[700px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#0D1117]"
             skeletonTitle="Loading Studio Stations..."
           >
             <StudioStationsSection />
@@ -87,7 +90,7 @@ export const App: React.FC = () => {
           <LazySection
             id="interactive-builder"
             minHeight="min-h-[700px]"
-            bgClassName="bg-studio-ink"
+            bgClassName="bg-[#080B12]"
             skeletonTitle="Loading Growth Builder..."
           >
             <BuildYourGrowthSection />
@@ -97,7 +100,7 @@ export const App: React.FC = () => {
           <LazySection
             id="work"
             minHeight="min-h-[750px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#080B12]"
             skeletonTitle="Loading Work Tape..."
           >
             <WorkTapeSection />
@@ -107,7 +110,7 @@ export const App: React.FC = () => {
           <LazySection
             id="process"
             minHeight="min-h-[500px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#080B12]"
             skeletonTitle="Loading Studio Timeline..."
           >
             <ProcessTimelineSection />
@@ -117,7 +120,7 @@ export const App: React.FC = () => {
           <LazySection
             id="about"
             minHeight="min-h-[600px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#0D1117]"
             skeletonTitle="Loading Founders..."
           >
             <AboutStudioSection />
@@ -127,7 +130,7 @@ export const App: React.FC = () => {
           <LazySection
             id="pricing"
             minHeight="min-h-[600px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#080B12]"
             skeletonTitle="Loading Pricing..."
           >
             <PricingSection />
@@ -137,7 +140,7 @@ export const App: React.FC = () => {
           <LazySection
             id="audit"
             minHeight="min-h-[700px]"
-            bgClassName="bg-studio-bg"
+            bgClassName="bg-[#080B12]"
             skeletonTitle="Loading Project Intake..."
           >
             <InteractiveAuditSection />
@@ -148,11 +151,12 @@ export const App: React.FC = () => {
         <LazySection
           id="footer"
           minHeight="min-h-[350px]"
-          bgClassName="bg-studio-ink"
+          bgClassName="bg-[#080B12]"
           skeletonTitle="Loading Footer..."
         >
           <Footer />
         </LazySection>
+
       </div>
     </SmoothScrollProvider>
   );

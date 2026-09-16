@@ -4,37 +4,74 @@
 
 @layer base {
   :root {
-    --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    /* ── Kinetic-Dark Color System ── */
 
-    /* Kinetic Studio Design Tokens */
-    --background: #F5F2EB;
-    --color-bg: #F5F2EB;
-    --color-bg-alt: #EDE8DC;
-    --color-ink: #050817;
-    --color-border: #D8D1C2;
-    --color-border-dark: #1F2438;
-    --color-gold: #D5A329;
-    --color-acid: #C7FF3D;
-    --color-muted: #5A6072;
+    /* Page backgrounds */
+    --c-bg:      #080B12;   /* primary page background */
+    --c-bg-1:    #0D1117;   /* card / panel surface */
+    --c-bg-2:    #13181F;   /* elevated panels */
+    --c-bg-3:    #1A2030;   /* hover / selected state */
+    --c-bg-warm: #0F1318;   /* slight warm tint for alt sections */
+
+    /* Ink / text */
+    --c-ink:     #ECEEF2;   /* primary text */
+    --c-ink-2:   #8A92A6;   /* secondary / muted */
+    --c-ink-3:   #525C71;   /* placeholder / disabled */
+
+    /* Accent 01 — Acid Green (primary brand) */
+    --c-acid:       #C7FF3D;
+    --c-acid-dim:   #A3D42D;
+    --c-acid-glow:  rgba(199, 255, 61, 0.15);
+    --c-acid-border: rgba(199, 255, 61, 0.30);
+
+    /* Accent 02 — Electric Coral (secondary / emphasis) */
+    --c-coral:    #FF4F3B;
+    --c-coral-dim:#D94030;
+    --c-coral-glow: rgba(255, 79, 59, 0.15);
+
+    /* Accent 03 — Cold Blue (info / links) */
+    --c-blue:     #3B8EFF;
+    --c-blue-dim: #2A68C4;
+    --c-blue-glow: rgba(59, 142, 255, 0.15);
+
+    /* Borders */
+    --c-border:    rgba(255, 255, 255, 0.07);
+    --c-border-hi: rgba(199, 255, 61, 0.25);
+    --c-border-active: rgba(199, 255, 61, 0.55);
+
+    /* Typography */
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body:    'Space Grotesk', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+
+    /* Legacy bridge tokens (keeps existing components referencing these from breaking) */
+    --background:         var(--c-bg);
+    --color-bg:           var(--c-bg);
+    --color-bg-alt:       var(--c-bg-1);
+    --color-ink:          var(--c-ink);
+    --color-border:       var(--c-border);
+    --color-border-dark:  var(--c-border-hi);
+    --color-gold:         var(--c-acid);
+    --color-acid:         var(--c-acid);
+    --color-muted:        var(--c-ink-2);
   }
 
   html {
     scroll-behavior: auto; /* Managed by Lenis */
-    background-color: var(--color-bg);
+    background-color: var(--c-bg);
   }
 
   body {
-    background-color: var(--color-bg);
-    color: var(--color-ink);
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    font-family: var(--font-body);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* When custom cursor is active on fine-pointer devices, hide the OS cursor */
+  /* Custom cursor: hide OS cursor when custom cursor is active */
   @media (pointer: fine) {
     body.custom-cursor-enabled,
     body.custom-cursor-enabled * {
@@ -43,96 +80,260 @@
   }
 
   ::selection {
-    background-color: #050817;
-    color: #C7FF3D;
+    background-color: var(--c-acid-glow);
+    color: var(--c-acid);
   }
+
+  /* Font utility classes */
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+  .font-mono    { font-family: var(--font-mono); }
 }
 
+
 /* ────────────────────────────────────────────────
-   Studio Architectural Grid & Hairline Textures
+   GRAIN / NOISE TEXTURE OVERLAY
+   — Use <div className="noise-overlay" /> as a
+     fixed ::after or an absolutely placed child.
+──────────────────────────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  mix-blend-mode: overlay;
+}
+
+/* Section-level noise (applied as position: absolute inside a section) */
+.noise-section {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+
+/* ────────────────────────────────────────────────
+   GLASSMORPHIC PANELS
+──────────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(13, 17, 23, 0.65);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--c-border);
+}
+
+.glass-panel-hi {
+  background: rgba(19, 24, 31, 0.80);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid var(--c-border-hi);
+}
+
+
+/* ────────────────────────────────────────────────
+   GLOW UTILITIES
+──────────────────────────────────────────────── */
+.glow-acid {
+  box-shadow: 0 0 0 1px var(--c-acid-border),
+              0 0 24px var(--c-acid-glow),
+              0 0 48px rgba(199, 255, 61, 0.06);
+}
+
+.glow-acid-text {
+  text-shadow: 0 0 20px var(--c-acid-glow), 0 0 40px rgba(199, 255, 61, 0.12);
+}
+
+.glow-coral {
+  box-shadow: 0 0 0 1px rgba(255, 79, 59, 0.3),
+              0 0 24px var(--c-coral-glow);
+}
+
+.glow-border-acid {
+  border-color: var(--c-acid-border);
+  box-shadow: 0 0 20px var(--c-acid-glow);
+}
+
+
+/* ────────────────────────────────────────────────
+   STUDIO GRID OVERLAYS (Dark versions)
 ──────────────────────────────────────────────── */
 .bg-studio-grid {
   background-size: 48px 48px;
   background-image:
-    linear-gradient(to right, rgba(5, 8, 23, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(5, 8, 23, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 .bg-studio-grid-dark {
   background-size: 48px 48px;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(5, 8, 23, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(199, 255, 61, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
+
 /* ────────────────────────────────────────────────
-   Studio Borders & Rules
+   BORDERS
 ──────────────────────────────────────────────── */
 .border-hairline {
   border-width: 1px;
-  border-color: rgba(5, 8, 23, 0.14);
+  border-color: var(--c-border);
 }
 
 .border-studio-black {
-  border-color: #050817;
+  border-color: var(--c-border-hi);
 }
 
+
 /* ────────────────────────────────────────────────
-   Kinetic Studio Marquees
+   KINETIC MARQUEES — Velocity-Reactive
+   Uses --marquee-speed CSS var (set by JS from Lenis velocity)
 ──────────────────────────────────────────────── */
 @keyframes marqueeLeft {
-  0% { transform: translateX(0%); }
+  0%   { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
 
 @keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
+  0%   { transform: translateX(-50%); }
   100% { transform: translateX(0%); }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marqueeLeft 32s linear infinite;
+  animation: marqueeLeft var(--marquee-speed, 28s) linear infinite;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
-  animation: marqueeRight 28s linear infinite;
+  animation: marqueeRight var(--marquee-speed-r, 24s) linear infinite;
 }
 
-.animate-marquee-left:hover,
-.animate-marquee-right:hover {
-  animation-play-state: paused;
+.marquee-wrapper:hover .animate-marquee-left {
+  animation-direction: reverse;
+  animation-duration: calc(var(--marquee-speed, 28s) * 1.5);
 }
+
+.marquee-wrapper:hover .animate-marquee-right {
+  animation-direction: reverse;
+  animation-duration: calc(var(--marquee-speed-r, 24s) * 1.5);
+}
+
 
 /* ────────────────────────────────────────────────
-   Studio Scrollbar
+   CLIP-PATH WIPE ANIMATION (used on hover CTAs)
+──────────────────────────────────────────────── */
+@keyframes clipWipeIn {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+.clip-wipe {
+  animation: clipWipeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Fill-wipe button base (sibling spans positioned absolute) */
+.btn-fill-wipe {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-fill-wipe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-acid);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.btn-fill-wipe:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-fill-wipe > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ────────────────────────────────────────────────
+   GLITCH FLICKER (for accent periods / labels)
+──────────────────────────────────────────────── */
+@keyframes acidFlicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%           { opacity: 0.4; }
+  97%           { opacity: 1; }
+  98%           { opacity: 0.6; }
+  99%           { opacity: 1; }
+}
+
+.acid-flicker {
+  animation: acidFlicker 4s ease-in-out infinite;
+  color: var(--c-acid);
+}
+
+@keyframes acidPulseGlow {
+  0%, 100% { text-shadow: 0 0 10px var(--c-acid-glow); }
+  50%       { text-shadow: 0 0 30px var(--c-acid-glow), 0 0 60px rgba(199, 255, 61, 0.12); }
+}
+
+.acid-glow-pulse {
+  animation: acidPulseGlow 3s ease-in-out infinite;
+}
+
+
+/* ────────────────────────────────────────────────
+   PERSPECTIVE TILT (hover on cards — used with useGlassHover)
+──────────────────────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+
+/* ────────────────────────────────────────────────
+   SCROLLBAR — Dark
 ──────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F2EB;
+  background: var(--c-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #050817;
+  background: var(--c-border-hi);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D5A329;
+  background: var(--c-acid);
 }
 
+
 /* ────────────────────────────────────────────────
-   Reduced Motion
+   REDUCED MOTION
 ──────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -143,6 +344,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .noise-overlay,
+  .noise-section {
+    display: none;
+  }
 }
-
-

@@ -11,22 +11,22 @@ export const PricingFAQ: React.FC = () => {
   };
 
   return (
-    <div className="mt-20 sm:mt-24 max-w-4xl mx-auto">
-      <div className="mb-10 pb-6 border-b border-sand-400/80 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-8 pb-6 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <span className="text-xs font-mono tracking-[0.2em] text-slate-500 uppercase font-semibold block mb-2">
-            Clarifications
+          <span className="text-[10px] font-mono tracking-[0.25em] text-[#525C71] uppercase font-bold block mb-2">
+            Clarifications //
           </span>
-          <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight uppercase">
+          <h3 className="font-display text-2xl sm:text-3xl font-black text-[#ECEEF2] tracking-tight uppercase">
             Frequently Asked Questions
           </h3>
         </div>
-        <span className="text-xs font-mono text-slate-500">
+        <span className="text-xs font-mono text-[#525C71]">
           Everything clear before you spend ₹1.
         </span>
       </div>
 
-      <div className="divide-y divide-sand-300">
+      <div className="divide-y divide-white/[0.05]">
         {PRICING_FAQS.map((faq, index) => {
           const isOpen = openIndex === index;
           return (
@@ -34,11 +34,14 @@ export const PricingFAQ: React.FC = () => {
               <button
                 type="button"
                 onClick={() => toggleIndex(index)}
-                className="w-full text-left flex items-center justify-between gap-4 font-display text-base sm:text-lg font-bold text-slate-900 hover:text-accent-gold transition-colors focus:outline-none"
+                className="w-full text-left flex items-center justify-between gap-4 font-display text-base sm:text-lg font-bold text-[#ECEEF2] hover:text-[#C7FF3D] transition-colors focus:outline-none uppercase"
                 aria-expanded={isOpen}
               >
                 <span>{faq.question}</span>
-                <span className="w-6 h-6 rounded-full border border-sand-400 flex items-center justify-center text-slate-700 shrink-0">
+                <span
+                  className="w-6 h-6 border border-white/[0.10] flex items-center justify-center shrink-0 transition-colors"
+                  style={{ borderColor: isOpen ? 'rgba(199,255,61,0.4)' : undefined, color: isOpen ? '#C7FF3D' : '#525C71' }}
+                >
                   {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                 </span>
               </button>
@@ -49,9 +52,9 @@ export const PricingFAQ: React.FC = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="pt-3 pr-10 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+                    <div className="pt-3 pr-10 text-sm sm:text-base text-[#8A92A6] leading-relaxed font-body">
                       <p>{faq.answer}</p>
                     </div>
                   </motion.div>
@@ -64,4 +67,3 @@ export const PricingFAQ: React.FC = () => {
     </div>
   );
 };
-

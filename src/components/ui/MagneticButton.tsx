@@ -10,11 +10,12 @@ interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   rel?: string;
   cursorText?: string;
   onClick?: (e: React.MouseEvent) => void;
+  style?: React.CSSProperties;
 }
 
 export const MagneticButton: React.FC<MagneticButtonProps> = ({
   children,
-  strength = 0.3,
+  strength = 0.28,
   className = '',
   as = 'button',
   href,
@@ -22,6 +23,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
   rel,
   cursorText = "LET'S TALK ↗",
   onClick,
+  style,
   ...rest
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
@@ -41,9 +43,19 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     setPosition({ x: 0, y: 0 });
   };
 
-  const transformStyle = {
+  const transformStyle: React.CSSProperties = {
     transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-    transition: position.x === 0 && position.y === 0 ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
+    transition: position.x === 0 && position.y === 0
+      ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+      : 'none',
+    ...style,
+  };
+
+  const commonProps = {
+    style: transformStyle,
+    'data-cursor': 'cta' as const,
+    'data-cursor-text': cursorText,
+    className: `inline-flex items-center justify-center select-none ${className}`,
   };
 
   if (as === 'a' && href) {
@@ -58,10 +70,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
           href={href}
           target={target}
           rel={rel}
-          data-cursor="cta"
-          data-cursor-text={cursorText}
-          style={transformStyle}
-          className={`inline-flex items-center justify-center select-none ${className}`}
+          {...commonProps}
           onClick={onClick as any}
         >
           {children}
@@ -78,10 +87,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
       className="inline-block"
     >
       <button
-        style={transformStyle}
-        data-cursor="cta"
-        data-cursor-text={cursorText}
-        className={`inline-flex items-center justify-center select-none ${className}`}
+        {...commonProps}
         onClick={onClick}
         {...rest}
       >
@@ -90,4 +96,3 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     </div>
   );
 };
-

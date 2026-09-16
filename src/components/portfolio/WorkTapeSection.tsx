@@ -17,6 +17,28 @@ const AtelierStudioPreview = React.lazy(() =>
   import('../case-previews/AtelierStudioPreview').then((m) => ({ default: m.AtelierStudioPreview }))
 );
 
+// Per-project color palettes — Kinetic-Dark editorial style
+const projectPalettes: Record<string, { bg: string; text: string; accent: string; dim: string }> = {
+  'aura-clinic': {
+    bg: '#0A1520',
+    text: '#B8D4E8',
+    accent: '#3B8EFF',
+    dim: '#1A2A3A',
+  },
+  'forge-athletics': {
+    bg: '#12100A',
+    text: '#E8C870',
+    accent: '#C7FF3D',
+    dim: '#1E1A0E',
+  },
+  'atelier-studio': {
+    bg: '#140F0E',
+    text: '#D4C4B8',
+    accent: '#FF4F3B',
+    dim: '#1E1815',
+  },
+};
+
 export const WorkTapeSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -24,6 +46,7 @@ export const WorkTapeSection: React.FC = () => {
 
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const handleOpenPreview = (cs: CaseStudy) => {
     setSelectedCase(cs);
@@ -33,10 +56,7 @@ export const WorkTapeSection: React.FC = () => {
   useEffect(() => {
     const isMobile = window.innerWidth < 1024;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (isMobile || prefersReducedMotion) {
-      return;
-    }
+    if (isMobile || prefersReducedMotion) return;
 
     const triggerEl = triggerRef.current;
     const reelEl = reelRef.current;
@@ -52,7 +72,7 @@ export const WorkTapeSection: React.FC = () => {
         start: 'top top',
         end: () => `+=${totalScroll + 200}`,
         pin: true,
-        scrub: 1,
+        scrub: 1.2,
         invalidateOnRefresh: true,
         anticipatePin: 1,
       },
@@ -64,13 +84,83 @@ export const WorkTapeSection: React.FC = () => {
     };
   }, []);
 
+  const renderProjectVisual = (study: CaseStudy) => {
+    const palette = projectPalettes[study.id] || projectPalettes['aura-clinic'];
+    const isHovered = hoveredId === study.id;
+
+    return (
+      <div
+        className="relative w-full h-[320px] sm:h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 p-6 sm:p-8"
+        style={{ backgroundColor: palette.bg }}
+      >
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-studio-grid opacity-30" />
+
+        {/* Accent glow */}
+        <div
+          className="absolute -top-10 -right-10 w-48 h-48 rounded-full pointer-events-none transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(circle, ${palette.accent}20 0%, transparent 70%)`,
+            opacity: isHovered ? 1 : 0.5,
+          }}
+        />
+
+        {/* Top bar */}
+        <div className="relative flex items-center justify-between pb-3 border-b border-white/[0.08] font-mono text-[10px] z-10">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: palette.accent }} />
+            <span style={{ color: palette.text }}>{study.name.toLowerCase().replace(' ', '')}.co</span>
+          </div>
+          <span
+            className="px-2 py-0.5 font-bold"
+            style={{ color: palette.accent, background: `${palette.accent}18`, border: `1px solid ${palette.accent}30` }}
+          >
+            {study.badge}
+          </span>
+        </div>
+
+        {/* Central content */}
+        <div className="relative my-auto text-center py-4 z-10">
+          <span className="font-mono text-[9px] uppercase tracking-[0.25em] font-bold block mb-3" style={{ color: palette.accent }}>
+            {study.category}
+          </span>
+          <h4
+            className="font-display font-black tracking-tight leading-tight max-w-xs mx-auto mb-5"
+            style={{
+              fontSize: 'clamp(1.4rem, 4vw, 2rem)',
+              color: palette.text,
+              filter: isHovered ? 'none' : 'saturate(0.6)',
+              transition: 'filter 0.4s ease',
+            }}
+          >
+            {study.tagline}
+          </h4>
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 font-mono text-[10px] font-black"
+            style={{ backgroundColor: palette.accent, color: '#080B12' }}
+          >
+            <span>Launch Prototype</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </div>
+        </div>
+
+        {/* Bottom meta */}
+        <div className="relative flex items-center justify-between pt-3 border-t border-white/[0.08] font-mono text-[10px] z-10" style={{ color: `${palette.text}80` }}>
+          {study.focusHighlights?.slice(0, 2).map((hl, i) => (
+            <span key={i}>{hl.spec} {hl.label}</span>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   const renderPreviewContent = () => {
     if (!selectedCase) return null;
     return (
       <React.Suspense
         fallback={
-          <div className="flex items-center justify-center p-20 text-studio-ink font-mono text-sm">
-            <span className="w-2.5 h-2.5 rounded-full bg-studio-gold animate-ping mr-3" />
+          <div className="flex items-center justify-center p-20 text-[#8A92A6] font-mono text-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#C7FF3D] animate-ping mr-3" style={{ boxShadow: '0 0 8px rgba(199,255,61,0.8)' }} />
             Loading live prototype...
           </div>
         }
@@ -82,208 +172,117 @@ export const WorkTapeSection: React.FC = () => {
     );
   };
 
-  const renderProjectVisual = (study: CaseStudy) => {
-    if (study.id === 'aura-clinic') {
-      return (
-        <div className="relative w-full h-[360px] sm:h-[440px] bg-[#EBF3F7] p-6 sm:p-8 flex flex-col justify-between overflow-hidden group-hover:bg-[#E2EFF5] transition-colors">
-          {/* Top Tape Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-studio-ink/15 font-mono text-xs">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-sky-500" />
-              <span className="text-studio-ink font-bold">auraclinic.co</span>
-            </div>
-            <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-700 font-bold border border-emerald-500/20">
-              0.8s load
-            </span>
-          </div>
-
-          {/* Central Editorial Layout */}
-          <div className="my-auto text-center py-6">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-sky-800 font-bold block mb-2">
-              Aesthetic Dentistry &amp; Facial Practice
-            </span>
-            <h4 className="font-display text-3xl sm:text-4xl font-black text-studio-ink tracking-tight leading-tight max-w-sm mx-auto mb-4">
-              Calm, modern care for your smile.
-            </h4>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-studio-ink text-white font-mono text-xs font-bold shadow-studio-sm">
-              <span>2-Tap Instant Consultation</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-accent-acid" />
-            </div>
-          </div>
-
-          {/* Bottom Metas */}
-          <div className="flex items-center justify-between pt-3 border-t border-studio-ink/15 font-mono text-xs text-studio-ink/70">
-            <span>Direct WhatsApp Booking</span>
-            <span className="font-bold text-studio-ink">Zero Phone Bottleneck</span>
-          </div>
-        </div>
-      );
-    }
-
-    if (study.id === 'forge-athletics') {
-      return (
-        <div className="relative w-full h-[360px] sm:h-[440px] bg-studio-ink text-white p-6 sm:p-8 flex flex-col justify-between overflow-hidden group-hover:bg-[#080B1E] transition-colors">
-          {/* Top Tape Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-white/15 font-mono text-xs">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-400" />
-              <span className="text-white font-bold">forgeclub.fit</span>
-            </div>
-            <span className="px-2 py-0.5 bg-amber-400/15 text-amber-300 font-bold border border-amber-400/30">
-              100/100 Perf
-            </span>
-          </div>
-
-          {/* Central Editorial Layout */}
-          <div className="my-auto text-center py-6">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-amber-400 font-bold block mb-2">
-              Boutique Performance Facility
-            </span>
-            <h4 className="font-display text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight max-w-sm mx-auto mb-4">
-              Strength forged without compromise.
-            </h4>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-400 text-studio-ink font-mono text-xs font-black shadow-studio-sm">
-              <span>Claim Digital Day Pass</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-
-          {/* Bottom Metas */}
-          <div className="flex items-center justify-between pt-3 border-t border-white/15 font-mono text-xs text-white/70">
-            <span>Apple Wallet Pass Engine</span>
-            <span className="font-bold text-amber-400">1-Click Pass Flow</span>
-          </div>
-        </div>
-      );
-    }
-
-    // Atelier Studio
-    return (
-      <div className="relative w-full h-[360px] sm:h-[440px] bg-[#EAE2D2] p-6 sm:p-8 flex flex-col justify-between overflow-hidden group-hover:bg-[#E3D9C5] transition-colors">
-        {/* Top Tape Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-studio-ink/15 font-mono text-xs">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-sand-500" />
-            <span className="text-studio-ink font-bold">atelierstudio.craft</span>
-          </div>
-          <span className="px-2 py-0.5 bg-studio-ink/10 text-studio-ink font-bold border border-studio-ink/20">
-            Editorial Craft
-          </span>
-        </div>
-
-        {/* Central Editorial Layout */}
-        <div className="my-auto text-center py-6">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-studio-ink/70 font-bold block mb-2">
-            Bespoke Architecture &amp; Millwork
-          </span>
-          <h4 className="font-display text-3xl sm:text-4xl font-black text-studio-ink tracking-tight leading-tight max-w-sm mx-auto mb-4">
-            Tactile spaces crafted for generations.
-          </h4>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-studio-ink text-[#F5F2EB] font-mono text-xs font-bold shadow-studio-sm">
-            <span>Project Scope Estimator</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-studio-gold" />
-          </div>
-        </div>
-
-        {/* Bottom Metas */}
-        <div className="flex items-center justify-between pt-3 border-t border-studio-ink/15 font-mono text-xs text-studio-ink/70">
-          <span>High-Ticket Budget Qualifier</span>
-          <span className="font-bold text-studio-ink">Pre-Qualified Leads</span>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <section ref={sectionRef} className="bg-studio-bg border-t border-studio-ink relative overflow-hidden" id="work">
-      {/* Pinned Reel Trigger Container */}
+    <section ref={sectionRef} className="bg-[#080B12] border-t border-white/[0.06] relative overflow-hidden" id="work">
+      <div className="noise-section" />
+
       <div ref={triggerRef} className="w-full">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 sm:pt-32 pb-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 sm:pt-32 pb-12 relative z-10">
           {/* Section Header */}
-          <div className="pb-8 border-b border-studio-ink flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="pb-8 border-b border-white/[0.08] flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-studio-gold" />
-                <span className="text-xs sm:text-sm font-mono tracking-[0.25em] text-studio-ink/70 uppercase font-bold">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C7FF3D]" style={{ boxShadow: '0 0 6px rgba(199,255,61,0.8)' }} />
+                <span className="text-[10px] font-mono tracking-[0.25em] text-[#525C71] uppercase font-bold">
                   PORTFOLIO // HORIZONTAL WORK TAPE
                 </span>
               </div>
-              <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-studio-ink tracking-tight leading-none uppercase">
-                Selected Work &amp;<br />
+              <h2
+                className="font-display font-black text-[#ECEEF2] tracking-tight leading-[0.88] uppercase"
+                style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)' }}
+              >
+                Selected Work &<br />
                 Live Prototypes.
               </h2>
             </div>
-            <p className="text-studio-ink/80 text-base sm:text-lg max-w-md font-medium leading-relaxed">
-              Full-fidelity conversion systems engineered for real verticals. Click any project to launch and test the interactive live prototype.
+            <p className="text-[#8A92A6] text-base sm:text-lg max-w-md font-body leading-relaxed">
+              Full-fidelity conversion systems engineered for real verticals. Click any project to launch the interactive live prototype.
             </p>
           </div>
         </div>
 
-        {/* ── Horizontal Scroll Tape Reel ── */}
+        {/* Horizontal Scroll Reel */}
         <div className="w-full overflow-x-auto lg:overflow-x-visible pb-20 no-scrollbar">
           <div
             ref={reelRef}
-            className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-6 sm:px-8 lg:px-12 lg:w-max items-stretch"
+            className="flex flex-col lg:flex-row gap-6 lg:gap-8 px-6 sm:px-8 lg:px-12 lg:w-max items-stretch"
           >
             {CASE_STUDIES.map((study, idx) => (
               <div
                 key={study.id}
                 onClick={() => handleOpenPreview(study)}
+                onMouseEnter={() => setHoveredId(study.id)}
+                onMouseLeave={() => setHoveredId(null)}
                 data-cursor="view"
                 data-cursor-text={`INSPECT 0${idx + 1}`}
-                className="w-full lg:w-[680px] shrink-0 bg-[#F5F2EB] border-2 border-studio-ink p-6 sm:p-8 flex flex-col justify-between cursor-pointer hover:shadow-studio-lg hover:border-studio-gold transition-all duration-300 group"
+                className="w-full lg:w-[640px] shrink-0 bg-[#0D1117] border border-white/[0.07] p-6 sm:p-8 flex flex-col justify-between cursor-pointer transition-all duration-300 group"
+                style={{
+                  borderColor: hoveredId === study.id
+                    ? `${projectPalettes[study.id]?.accent}30`
+                    : undefined,
+                  boxShadow: hoveredId === study.id
+                    ? `0 0 40px ${projectPalettes[study.id]?.accent}08`
+                    : undefined,
+                }}
               >
-                {/* Project Header Tag */}
-                <div className="flex items-center justify-between pb-4 mb-6 border-b border-studio-ink/20">
+                {/* Project Header */}
+                <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-3xl font-black text-studio-ink">
-                      0{idx + 1}
-                    </span>
-                    <span className="font-mono text-xs font-bold tracking-widest text-studio-ink/60 uppercase">
+                    <span className="font-mono text-3xl font-black text-[#1A2030]">0{idx + 1}</span>
+                    <span className="font-mono text-[10px] font-bold tracking-widest text-[#525C71] uppercase">
                       / {study.category}
                     </span>
                   </div>
-                  <span className="font-mono text-xs font-extrabold px-2.5 py-1 bg-studio-ink text-accent-acid uppercase">
+                  <div
+                    className="font-mono text-[10px] font-black px-2.5 py-1 uppercase"
+                    style={{
+                      color: projectPalettes[study.id]?.accent,
+                      background: `${projectPalettes[study.id]?.accent}15`,
+                    }}
+                  >
                     {study.badge}
-                  </span>
+                  </div>
                 </div>
 
-                {/* Project Visual Canvas */}
-                <div className="border border-studio-ink overflow-hidden mb-6 group-hover:scale-[1.01] transition-transform duration-300">
+                {/* Project Visual */}
+                <div className="border border-white/[0.06] overflow-hidden mb-6 transition-transform duration-300 group-hover:scale-[1.005]">
                   {renderProjectVisual(study)}
                 </div>
 
-                {/* Project Metadata & Headline */}
+                {/* Project Info */}
                 <div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-studio-ink tracking-tight uppercase mb-2 group-hover:text-studio-gold transition-colors">
+                  <h3
+                    className="font-display text-2xl sm:text-3xl font-black text-[#ECEEF2] tracking-tight uppercase mb-2 transition-colors duration-200"
+                    style={{ color: hoveredId === study.id ? projectPalettes[study.id]?.accent : undefined }}
+                  >
                     {study.name}
                   </h3>
-                  <p className="text-sm sm:text-base text-studio-ink/80 font-medium leading-snug mb-6">
-                    {study.tagline}
-                  </p>
+                  <p className="text-sm text-[#8A92A6] font-body leading-snug mb-5">{study.tagline}</p>
 
-                  {/* Highlights Bar */}
-                  <div className="grid grid-cols-3 gap-2 py-4 border-y border-studio-ink/20 mb-6 font-mono">
-                    {study.focusHighlights.map((hl, hIdx) => (
+                  {/* Metric strip */}
+                  <div className="grid grid-cols-3 gap-2 py-4 border-y border-white/[0.06] mb-5 font-mono">
+                    {study.focusHighlights?.map((hl, hIdx) => (
                       <div key={hIdx}>
-                        <div className="text-base font-extrabold text-studio-ink">
-                          {hl.spec}
-                        </div>
-                        <div className="text-[10px] text-studio-ink/60 leading-tight">
-                          {hl.label}
-                        </div>
+                        <div className="text-base font-extrabold text-[#ECEEF2]">{hl.spec}</div>
+                        <div className="text-[9px] text-[#525C71] leading-tight">{hl.label}</div>
                       </div>
                     ))}
                   </div>
 
-                  {/* CTA Button */}
+                  {/* Bottom row */}
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-studio-ink/60 font-semibold uppercase">
+                    <span className="font-mono text-[10px] text-[#525C71] font-semibold uppercase">
                       Click to test prototype
                     </span>
-                    <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-studio-ink text-[#F5F2EB] font-mono text-xs font-bold uppercase group-hover:bg-studio-gold group-hover:text-studio-ink transition-colors">
+                    <div
+                      className="inline-flex items-center gap-2 px-4 py-2 font-mono text-[10px] font-black uppercase transition-colors duration-200"
+                      style={{
+                        backgroundColor: hoveredId === study.id ? projectPalettes[study.id]?.accent : '#13181F',
+                        color: hoveredId === study.id ? '#080B12' : '#8A92A6',
+                      }}
+                    >
                       <span>Launch Prototype</span>
-                      <Eye className="w-3.5 h-3.5 text-accent-acid group-hover:text-studio-ink" />
+                      <Eye className="w-3.5 h-3.5" />
                     </div>
                   </div>
                 </div>
@@ -293,7 +292,6 @@ export const WorkTapeSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Full-Screen Interactive Demo Modal */}
       <Modal
         isOpen={isPreviewOpen}
         onClose={() => setIsPreviewOpen(false)}
@@ -307,4 +305,3 @@ export const WorkTapeSection: React.FC = () => {
 };
 
 export default WorkTapeSection;
-
