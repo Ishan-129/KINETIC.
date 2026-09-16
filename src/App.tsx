@@ -1,4 +1,5 @@
 import React from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { SignalCursor } from './components/ui/SignalCursor';
@@ -148,7 +149,99 @@ export const App: React.FC = () => {
         >
           <Footer />
         </LazySection>
-      </div>
+
+        {/* 3. The Core Philosophy (Discover -> Trust -> Convert) */}
+        <LazySection
+          id="framework"
+          minHeight="min-h-[650px]"
+          bgClassName="bg-ivory-50"
+          skeletonTitle="Loading Core Philosophy..."
+        >
+          <FrameworkSection />
+        </LazySection>
+
+        {/* 4. High-Fidelity Concept Case Studies */}
+        <LazySection
+          id="work"
+          minHeight="min-h-[700px]"
+          bgClassName="bg-ivory-100"
+          skeletonTitle="Loading Case Studies & Prototypes..."
+        >
+          <CaseStudiesSection />
+        </LazySection>
+
+        {/* 5. Business-First Services & Capabilities */}
+        <LazySection
+          id="services"
+          minHeight="min-h-[700px]"
+          bgClassName="bg-ivory-50"
+          skeletonTitle="Loading Agency Capabilities..."
+        >
+          <ServicesSection />
+        </LazySection>
+
+        {/* 6. The 5-Step Launch Protocol */}
+        <LazySection
+          id="process"
+          minHeight="min-h-[600px]"
+          bgClassName="bg-ivory-100"
+          skeletonTitle="Loading 5-Step Protocol..."
+        >
+          <ProcessSection />
+        </LazySection>
+
+        {/* 7. Why Work With Us (Direct Founders vs Bloated Agencies) */}
+        <LazySection
+          id="why-us"
+          minHeight="min-h-[600px]"
+          bgClassName="bg-ivory-50"
+          skeletonTitle="Loading Direct Founder Advantage..."
+        >
+          <WhyUsSection />
+        </LazySection>
+
+        {/* 7.5. Transparent Investment & Squishy Pricing Tiers */}
+        <LazySection
+          id="pricing"
+          minHeight="min-h-[600px]"
+          bgClassName="bg-ivory-100/60"
+          skeletonTitle="Loading Transparent Pricing..."
+        >
+          <PricingSection />
+        </LazySection>
+
+        {/* 8. Meet the 3 Founders */}
+        <LazySection
+          id="team"
+          minHeight="min-h-[600px]"
+          bgClassName="bg-ivory-100"
+          skeletonTitle="Loading Founders & Leadership..."
+        >
+          <TeamSection />
+        </LazySection>
+
+        {/* 9. Interactive Scope & Digital Audit Form */}
+        <LazySection
+          id="audit"
+          minHeight="min-h-[700px]"
+          bgClassName="bg-ivory-50"
+          skeletonTitle="Loading Digital Audit Calculator..."
+        >
+          <InteractiveAuditSection />
+        </LazySection>
+      </main>
+
+      {/* Footer & Colophon */}
+      <LazySection
+        id="footer"
+        minHeight="min-h-[350px]"
+        bgClassName="bg-accent-navy"
+        skeletonTitle="Loading Footer..."
+      >
+        <Footer />
+      </LazySection>
+      <Analytics />
+    </div>
     </SmoothScrollProvider>
   );
 };
